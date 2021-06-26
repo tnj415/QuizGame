@@ -1,0 +1,81 @@
+body {
+    font-family: 'Gochi Hand', cursive;
+}
+
+body img {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+}
+
+header {
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* flex-direction: column; */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    padding-left: 20px;
+    line-height: 200%;
+    max-height: 3vh;
+}
+
+header p {
+    line-height: 200%;
+    align-items: right;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 70vh;
+
+}
+
+.questions-card {
+    width: 80vw;
+    border-radius: 5px;
+
+    flex-wrap: wrap;
+    align-items: center;
+    color: rgb(0, 0, 0)
+}
+
+.questions-card h3 {
+    text-align: center;
+}
+
+.ans-container {
+
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+
+}
+
+.option-btn {
+    background-color: inherit;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    text-align: left;
+    font-family: 'Gochi Hand', cursive;
+
+}
+
+.option-btn:hover {
+
+
+}
+
+.hidden {
+    border-top: 2px solid rgb(46, 126, 153);
+    color: rgb(46, 126, 153);
+    display: none;
+}
