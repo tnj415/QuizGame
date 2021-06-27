@@ -1,7 +1,9 @@
-var startQuiz = home-screen.querySelector(".start-quiz")
+var startQuiz = Quiz.querySelector(".start-quiz");
 
-startQuiz.addEventListener("click", function() {
+var selectAnswerA = Quiz.querySelector("answerA");
+var selectAnswerB = Quiz.querySelector("answerB");
+var selectAnswerC = Quiz.querySelector("answerC");
+var selectAnswerD = Quiz.querySelector("answerD");
 
-    beginQuiz();
-
-})
+var quizContainer = Quiz.querySelector("quiz-container");
+quizContainer.classList.add(".hide");

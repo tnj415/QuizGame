@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mina&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mina&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f85c83d532.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
-<title>Quiz</title>
+   
+    <title>Quiz</title>
 
 </head>
 
@@ -19,34 +20,41 @@
     <nav>
         <a href="homescreen.html"><i class="fas fa-home"></i></a>
         <div id="clock">
-        <p id="timer-title">seconds remaining</p>
-        <p id="timer">60</p>
+            <p id="timer-title">seconds remaining</p>
+            <p id="timer">60</p>
         </div>
     </nav>
     <main>
+        <div class="questions-card">
+            <!--Pre-screen-->
+            <section class="pre-screen">
 
-        <!--Pre-screen-->
-        <section class="pre-screen" id="#state">
+                <H1>Begin</H1>
+                <p>This is a timed assessment</p>
+                <p>You will have 60 Seconds to complete this quiz</p>
+                <p>Every wrong answer will deduct time</p>
 
-            <H1>Begin</H1>
-            <p>This is a timed assessment</p>
-            <p>You will have 60 Seconds to complete this quiz</p>
-            <p>Every wrong answer will deduct time</p>
+            </section>
             
-        </section>
-        <!-- Quiz -->
-        <section class="questions-card" id="#state">
+
             <!-- question text container -->
+            <section class="quiz-container">
                 <h3 id="#question">This is where the quiz questions will appear</h3>
-            <!-- answer container -->
-            <article class="ans-container">
-                <button class="option-btn" id="answerA">1. if you think this is the answer you may be correct</button>
-                <button class="option-btn" id="answerB">2. if you think this is the answer you may be correct</button>
-                <button class="option-btn" id="answerC">3. if you think this is the answer you may be correct</button>
-                <button class="option-btn" id="answerD">4. if you think this is the answer you may be correct</button>
-            </article>
+                <!-- answer container -->
+                <ol class="ans-container">
+                    <li class="option-btn" id="answerA">if youhe answer you may be
+                        correct</li>
+                    <li class="option-btn" id="answerB">if answer you may be correct</li>
+                    <li class="option-btn" id="answerC"> if you think this is the answer you may be correct</li>
+                    <li class="option-btn" id="answerD"> if you thins the answer you may be
+                        correct</li>
+                </ol>
+            </section>
+        </div>
         </section>
     </main>
+    
+    <script src="./assets/js/js.js"></script>
 </body>
 
 </html>
