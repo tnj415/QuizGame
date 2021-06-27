@@ -37,8 +37,12 @@ main {
 }
 
 
-#underline {
-    align-items: center;
+.underline {
+    width: 85%;
+    display: block;
     border-bottom: 1px solid black;
-    padding: 0px 20%;
+
+    margin-left: 30px;
+    
+
 }
