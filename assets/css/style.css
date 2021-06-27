@@ -1,18 +1,11 @@
 body {
     font-family: 'Mina', sans-serif;
-font-family: 'Patrick Hand SC', cursive;
-}
-
-body img {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
+    font-family: 'Patrick Hand SC', cursive;
+    color: black
 }
 
 nav {
     display: flex;
-    /* flex-wrap: wrap; */
-    /* flex-direction: column; */
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -22,84 +15,76 @@ nav {
 
 nav a {
     padding-left: 10px;
-    line-height: 200%;
     max-height: 3vh;
     font-size: 30px;
 }
 
-nav p:hover {
-    color: blue;
+nav a:hover {
+    color: rgb(219, 121, 108);
 }
 
-nav p {
-    line-height: 200%;
-    align-items: right;
+#clock {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-right: 5%;
+    background-color: rgb(255, 255, 255, .75);
     font-weight: bold;
 }
 
 #timer {
-    padding: 0px 10px;
     margin: 0px;
     font-size: 60px;
- }
+}
 
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 25%;
     width: 100vw;
-    height: 45vh;
-
+    height: 50vh;
 }
 
 .questions-card {
     position: absolute;
-    width: 80vw;
+    width: 50vw;
+    padding: 10px 20px;
     border-radius: 5px;
-
     flex-wrap: wrap;
     align-items: center;
-    color: rgb(0, 0, 0)
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border: 2px solid rgb(108, 193, 219);
 }
 
 .questions-card h3 {
     text-align: center;
     padding-bottom: 10px;
-
 }
 
 .ans-container {
-
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
-
+    padding-bottom: 20px;
 }
 
 .option-btn {
     background-color: inherit;
     border: 2px solid white;
+    color: black;
     padding-top: 0px;
     margin: 0px;
     gap: 0px;
     font-size: 16px;
     font-family: 'Gochi Hand', cursive;
     width: fit-content;
-    
-
 }
 
 .option-btn:hover {
-    width:fit-content;
-border: 2px dotted  rgb(145, 145, 145, 20);
-border-radius: 20px;
-
-}
-
-.hidden {
-    border-top: 2px solid rgb(46, 126, 153);
-    color: rgb(46, 126, 153);
-    display: none;
+    width: fit-content;
+    border: 2px dotted rgb(145, 145, 145, 20);
+    border-radius: 20px;
 }
