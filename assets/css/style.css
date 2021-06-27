@@ -1,5 +1,6 @@
 body {
-    font-family: 'Gochi Hand', cursive;
+    font-family: 'Mina', sans-serif;
+font-family: 'Patrick Hand SC', cursive;
 }
 
 body img {
@@ -8,37 +9,52 @@ body img {
     width: 100vw;
 }
 
-header {
+nav {
     display: flex;
     /* flex-wrap: wrap; */
     /* flex-direction: column; */
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
 }
 
-header a {
-    padding-left: 20px;
+nav a {
+    padding-left: 10px;
     line-height: 200%;
     max-height: 3vh;
+    font-size: 30px;
 }
 
-header p {
+nav p:hover {
+    color: blue;
+}
+
+nav p {
     line-height: 200%;
     align-items: right;
     font-weight: bold;
 }
 
+#timer {
+    padding: 0px 10px;
+    margin: 0px;
+    font-size: 60px;
+ }
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 25%;
     width: 100vw;
-    height: 70vh;
+    height: 45vh;
 
 }
 
 .questions-card {
+    position: absolute;
     width: 80vw;
     border-radius: 5px;
 
@@ -49,28 +65,36 @@ main {
 
 .questions-card h3 {
     text-align: center;
+    padding-bottom: 10px;
+
 }
 
 .ans-container {
 
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
+    gap: 20px;
+    align-items: center;
 
 }
 
 .option-btn {
     background-color: inherit;
-    border: none;
-    padding: 10px;
-    font-size: 20px;
-    text-align: left;
+    border: 2px solid white;
+    padding-top: 0px;
+    margin: 0px;
+    gap: 0px;
+    font-size: 16px;
     font-family: 'Gochi Hand', cursive;
+    width: fit-content;
+    
 
 }
 
 .option-btn:hover {
-
+    width:fit-content;
+border: 2px dotted  rgb(145, 145, 145, 20);
+border-radius: 20px;
 
 }
 
