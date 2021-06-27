@@ -1,5 +1,45 @@
-body #background {
-    background-repeat: no-repeat;
-    width: 500px;
-    height: 500px;
+body {
+    background-image: url(../img/notebook-pattern.png);
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+main {
+    display: flex;
+    width: 100vw;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.outer-border {
+    width: 50vw;
+
+    background-color: white;
+    border: 5px solid black;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+.inner-border {
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.inner-border a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+
+
+#underline {
+    align-items: center;
+    border-bottom: 1px solid black;
+    width: 80%;
+    
 }
