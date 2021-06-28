@@ -42,7 +42,7 @@ function timerFunction() {
 }
 
 function showResults() {
-    window.location = 'https://tnj415.github.io/QuizGame/';
+    window.location = 'https://tnj415.github.io/QuizGame/scores.html';
 }
 
 function beginQuiz() {
