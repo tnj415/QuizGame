@@ -81,7 +81,8 @@ display: none;
    display:block
 } */
 
-.op-btn button {
+
+.op-btn, .nxt-btn {
     padding: 10px 5px;
     text-align: left;
     background-color: inherit;
@@ -92,26 +93,42 @@ display: none;
 
 }
 
-.op-btn button:hover {
+.op-btn:hover {
 
     border: 2px dotted rgb(145, 145, 145, 20);
     border-radius: 20px;
 }
 
+/* FIX ALIGNMENT */
+.nxt-btn {
+    margin-left: 150px; 
+    color: blue;
+    font-weight: bold;
+
+    /* display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center; */
+   
+}
+
 .show {
     display: block;
+    
 }
 .hide {
     display: none;
 }
 
-.correct-ans {
+#correct-ans {
     border: 2px solid rgb(16, 179, 16);
+    border-radius: 20px;
 }
 
-.incorrect-ans {
-    text-decoration: line-through;
-    text-decoration-color: red;
+#incorrect-ans {
+    text-decoration: line-through ;
+    text-decoration-color: red ;
+    border: none ;
 }
 
 /* @media screen and (max-width: 500px) {
