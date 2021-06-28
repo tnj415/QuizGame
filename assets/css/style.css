@@ -112,7 +112,7 @@ display: none;
    
 } */
 
-.timed-test, .slow-test, .nxt-btn, .results {
+.timed-test, .slow-test, #nxt-btn, #results {
     color: blue;
     font-weight: bold;
     text-decoration: none;
@@ -120,6 +120,7 @@ display: none;
     border: none
 
 }
+
 
 .show {
     display: block;

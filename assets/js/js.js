@@ -3,8 +3,8 @@ var preScreen = document.querySelector(".pre-screen");
 var timedTestChoice = document.querySelector(".timed-test");
 var slowTestChoice = document.querySelector(".slow-test");
 // var beginGame = document.querySelector(".begin");
-var results = document.querySelector(".results");
-var nxtBtn = document.querySelector(".nxt-btn")
+var results = document.querySelector("#results");
+var nxtBtn = document.querySelector("#nxt-btn")
 var opBtn = document.querySelectorAll(".op-btn");
 var askQ = document.querySelector("#question");
 var opA = document.querySelector("#opA");
@@ -13,7 +13,7 @@ var opC = document.querySelector("#opC");
 var opD = document.querySelector("#opD");
 var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
-
+var scoreLog = localStorage.getItem("score");
 
 
 opA.addEventListener("click", evaluateAns);
@@ -21,30 +21,34 @@ opB.addEventListener("click", evaluateAns);
 opC.addEventListener("click", evaluateAns);
 opD.addEventListener("click", evaluateAns);
 
-timedTestChoice.addEventListener("click", function () { 
+timedTestChoice.addEventListener("click", function () {
     timedTest = true;
     //console.log(timedTest);
     beginQuiz()
 })
+
 slowTestChoice.addEventListener("click", function () {
-     timedTest = false;
+    timedTest = false;
     //console.log(timedTest);
     beginQuiz()
-    })
+})
+
+results.addEventListener("click", showResults)
 
 // beginGame.addEventListener("click", beginQuiz);
 
 
 var timedTest = false;
-
 var timer = 60;
 var currQ = 0;
+var correctLog = 0;
 
 function timerFunction() {
 
     setInterval(function () {
         if (timer <= 0) {
             clearInterval(timer = 0);
+            results()
         }
 
         timerEl.innerHTML = timer;
@@ -53,6 +57,15 @@ function timerFunction() {
 }
 
 function showResults() {
+ 
+    if (timedTest) {
+        localStorage.setItem("scoreLog", timer);
+    }
+    else if (!timedTest) {
+        localStorage.setItem("scoreLog", correctLog);
+    }
+    else alert("error in showResults() if statement")
+
     window.location = 'https://tnj415.github.io/QuizGame/scores.html';
 }
 
@@ -75,7 +88,8 @@ function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
 
-
+//might need questions.length - 1
+//and have a different condition for last question
     // if (timedTest === true && currQ < questions.length) {showQuestion(currQ);}
     if (currQ < questions.length) { showQuestion(currQ); }
     else { showResults() }
@@ -114,7 +128,10 @@ function showQuestion(question) {
 
 function evaluateAns(e) {
 
-    if (timedTest === false) {
+var lastQ = false
+if (currQ === questions.length - 1) lastQ = true;
+
+    if (!timedTest) {
         // console.log(e.target)
         // console.log(e.target.dataset.correct)
         nxtBtn.removeAttribute("class", "hide");
@@ -124,6 +141,7 @@ function evaluateAns(e) {
             opBtn.forEach(el => el.setAttribute("id", "incorrect-ans"));
             e.target.removeAttribute("id", "incorrect-ans");
             e.target.setAttribute("id", "correct-ans");
+            correctLog++;
         }
         else {
 
@@ -135,29 +153,34 @@ function evaluateAns(e) {
             })
         }
 
-        if (currQ === questions.length) {
-
-            results.classList.remove("hide");
-            results.classList.add("show");
-        }
     }
     else {
         timerEl.classList.add("incorrectT-effect")
         timer -= 5;
         timerEl.innerHTML = -5;
+
+        //only happens for a split second
+        if (timerEl.classList.contains("incorrectT-effect")) {
+            timerEl.classList.remove("incorrectT-effect")
+            timerEl.classList.add("correctT-effects")
+        }
     }
 
+//might need different condition if last question
 
-    if (timerEl.classList.contains("incorrectT-effect")){
-    timerEl.classList.remove("incorrectT-effect")
-    timerEl.classList.add("correctT-effects")
-    }
-
+if (!lastQ) {
     currQ++;
-    if (timedTest === true) setNextQuestion();
-    else {
-        nxtBtn.addEventListener("click", setNextQuestion);
-    }
+    if (timedTest) setNextQuestion();
+    else nxtBtn.addEventListener("click", setNextQuestion);
+}
+else {
+    console.log("timer: " + timer);
+    console.log("C log: " + correctLog);
+    results.classList.remove("hide");
+    results.classList.add("show");
+    nxtBtn.classList.remove("show");
+    nxtBtn.classList.add("hide");
+}
 }
 
 function reset() {
@@ -215,7 +238,7 @@ var questions = [
     },
 
     {
-        question: "wertere?",
+        question: "LAST QUESTION?",
         options: [
             { text: "ert", correct: false },
             { text: "0ert", correct: false },
