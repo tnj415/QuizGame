@@ -33,12 +33,9 @@ function beginQuiz() {
 
 function setNextQuestion() {
 
-    if (nxtBtn.classList === "show") {
-    nxtBtn.classList.remove("show")
-    nxtBtn.classList.add("hide")
-    }
+   if (currQ > 0) reset()
     
-    showQuestion(currQ);
+    showQuestion(currQ)
     //evaluateAns();
 }
 
@@ -49,7 +46,7 @@ function showQuestion(question) {
     //   console.log(questions[0].question) //see how we're working our way through the array's objects?
     //   console.log(questions[0].options[1]) //what do you think this will store? console.log(myVar) to find out!
 
-    askQ.innerText = questions[currentQuestion].question;
+    askQ.innerText = questions[currQ].question;
 
     opA.innerText = questions[currQ].options[0].text
     opB.innerText = questions[currQ].options[1].text
@@ -87,14 +84,41 @@ function evaluateAns(e) {
         })
     }
 
+    currQ++
+
     if (currQ < questions.length) {
         nxtBtn.classList.remove("hide")
         nxtBtn.classList.add("show")
     }
     else {
-        resltBtn.classList.remove("hide")
-        resltBtn.classList.add("show")
+        results.classList.remove("hide")
+        results.classList.add("show")
     }
+
+    nxtBtn.addEventListener("click", setNextQuestion)
+}
+
+function reset() {
+
+
+
+    opBtn.forEach((el) => {
+
+        if (el.querySelector("#incorrect-ans"))
+        el.removeAttribute("id", "incorrect-ans")
+
+        else if (el.classList.querySelector("correct-ans"))
+        el.removeAttribute("id", "incorrect-ans")
+        else alert("something bad happened here")
+    })
+
+    if (nxtBtn.classList === "show") {
+        nxtBtn.classList.remove("show")
+        nxtBtn.classList.add("hide")
+        }
+
+
+}
 
     var questions = [
         {
