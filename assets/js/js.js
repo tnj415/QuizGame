@@ -20,7 +20,7 @@ function setNextQuestion() {
 }
 
 function showQuestion(question) {
-    questionElement.innerText = question.question;
+    questionElement.innerText = question.question[0];
 }
 
 
@@ -36,3 +36,15 @@ var questions = [
         ]
     }
 ]
+
+function showQuestion(question) {
+    //questionElement.innerText = question.question;
+
+  console.log(questions) //should print the whole questions array
+
+  console.log(questions[0]) //this should be the first element of that array... which is an object.
+
+  console.log(questions[0].question) //see how we're working our way through the array's objects?
+
+  var myVar = questions[0].options[1] //what do you think this will store? console.log(myVar) to find out!
+}
