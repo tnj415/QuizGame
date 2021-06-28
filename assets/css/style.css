@@ -112,7 +112,7 @@ display: none;
    
 } */
 
-.results a, .results, .begin, .nxt-btn {
+.timed-test, .slow-test, .nxt-btn,.results {
     color: blue;
     font-weight: bold;
     text-decoration: none;
