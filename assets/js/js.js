@@ -1,8 +1,13 @@
 var quizContainer = document.querySelector(".quiz-container");
 var preScreen = document.querySelector(".pre-screen");
 var beginGame = document.querySelector(".begin");
-var questionElement = document.querySelector('#question');
-var answerBtnElement = document.querySelectorAll('.option-btn');
+var questionElement = document.querySelector("#question");
+
+
+var opA = document.querySelector("#opA");
+var opB = document.querySelector("#opB");
+var opC = document.querySelector("#opC");
+var opD = document.querySelector("#opD");
 
 
 
@@ -19,11 +24,25 @@ function setNextQuestion() {
     showQuestion();
 }
 
+
 function showQuestion(question) {
-    questionElement.innerText = question.question[0];
+    console.log(questions) //should print the whole questions array
+    console.log(questions[0]) //this should be the first element of that array... which is an object.\
+    console.log(questions[0].question) //see how we're working our way through the array's objects?
+    
+    questionElement.innerText = questions[0].question;
+
+
+       console.log(questions[0].options[0].text)
+    
+       opA.innerText = questions[0].options[0].text
+
+    // opA.innerText = questions[0].options.text;
+    // opB.innerText = questions[0].options[1];
+    // opC.innerText = questions[0].options[2];
+    // opD.innerText = questions[0].options[3];
+    
 }
-
-
 
 var questions = [
     {
@@ -36,15 +55,3 @@ var questions = [
         ]
     }
 ]
-
-function showQuestion(question) {
-    //questionElement.innerText = question.question;
-
-  console.log(questions) //should print the whole questions array
-
-  console.log(questions[0]) //this should be the first element of that array... which is an object.
-
-  console.log(questions[0].question) //see how we're working our way through the array's objects?
-
-  var myVar = questions[0].options[1] //what do you think this will store? console.log(myVar) to find out!
-}
