@@ -2,26 +2,35 @@ var quizContainer = document.querySelector(".quiz-container");
 var preScreen = document.querySelector(".pre-screen");
 var timedTestChoice = document.querySelector(".timed-test");
 var slowTestChoice = document.querySelector(".slow-test");
-var beginGame = document.querySelector(".begin");
+var beginGame = document.querySelectorAll(".begin");
 var results = document.querySelector(".results");
+var nxtBtn = document.querySelector(".nxt-btn")
 var opBtn = document.querySelectorAll(".op-btn");
 var askQ = document.querySelector("#question");
 var opA = document.querySelector("#opA");
 var opB = document.querySelector("#opB");
 var opC = document.querySelector("#opC");
 var opD = document.querySelector("#opD");
+var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
 
-beginGame.addEventListener("click", beginQuiz);
+
 
 opA.addEventListener("click", evaluateAns);
 opB.addEventListener("click", evaluateAns);
 opC.addEventListener("click", evaluateAns);
 opD.addEventListener("click", evaluateAns);
 
-timedTestChoice.addEventListener("click", function(){timedTest = true})
-slowTestChoice.addEventListener("click", function(){timedTest = false})
+timedTestChoice.addEventListener("click", function () { 
+    timedTest = true;
+    //console.log(timedTest);
+})
+slowTestChoice.addEventListener("click", function () {
+     timedTest = false;
+    //console.log(timedTest);
+    })
 
+beginGame.addEventListener("click", beginQuiz);
 
 
 var timedTest = false;
@@ -46,21 +55,28 @@ function showResults() {
 }
 
 function beginQuiz() {
-    if (timedTest === true) timerFunction();
+    if (timedTest === true) {
+        timerTitleEl.removeAttribute("class", "hide")
+        timerTitleEl.setAttribute("class", "show")
+        timerEl.removeAttribute("class", "hide")
+        timerEl.setAttribute("class", "show")
+        timerFunction();
+    }
     preScreen.setAttribute("class", "hide");
     quizContainer.setAttribute("class", "show");
 
 
-    setNextQuestion();
+    setNextQuestion(currQ);
 }
 
 function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
-    console.log(currQ);
 
-    if (timedTest === true && currQ < questions.length) {showQuestion(currQ);}
-    else {showResults()}
+
+    // if (timedTest === true && currQ < questions.length) {showQuestion(currQ);}
+    if (currQ < questions.length) { showQuestion(currQ); }
+    else { showResults() }
 
     opA.addEventListener("click", evaluateAns);
     opB.addEventListener("click", evaluateAns);
@@ -99,6 +115,8 @@ function evaluateAns(e) {
     if (timedTest === false) {
         // console.log(e.target)
         // console.log(e.target.dataset.correct)
+        nxtBtn.removeAttribute("class", "hide");
+        nxtBtn.setAttribute("class", "show");
 
         if (e.target.dataset.correct === "true") {
             opBtn.forEach(el => el.setAttribute("id", "incorrect-ans"));
@@ -113,13 +131,7 @@ function evaluateAns(e) {
                 else
                     el.setAttribute("id", "correct-ans");
             })
-
-            timer -= 5;
-            timerEl.innerHTML = -5;
-            // timerEl.classList.add("incorrectT-effect")
         }
-
-
 
         if (currQ === questions.length) {
 
@@ -127,12 +139,31 @@ function evaluateAns(e) {
             results.classList.add("show");
         }
     }
+    else {
+        timerEl.classList.add("incorrectT-effect")
+        timer -= 5;
+        timerEl.innerHTML = -5;
+    }
+
+
+    if (timerEl.classList.contains("incorrectT-effect")){
+    timerEl.classList.remove("incorrectT-effect")
+    timerEl.classList.add("correctT-effects")
+    }
+
     currQ++;
-    setNextQuestion();
+    if (timedTest === true) setNextQuestion();
+    else {
+        nxtBtn.addEventListener("click", setNextQuestion);
+    }
 }
 
 function reset() {
 
+    if (nxtBtn.classList.contains("show")) {
+        nxtBtn.removeAttribute("class", "show");
+        nxtBtn.setAttribute("class", "hide");
+    }
     opBtn.forEach((el) => {
 
         if (document.querySelector("#incorrect-ans"))

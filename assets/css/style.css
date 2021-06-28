@@ -82,7 +82,7 @@ display: none;
 } */
 
 
-.begin, .op-btn, .nxt-btn {
+.op-btn {
     padding: 10px 5px;
     text-align: left;
     background-color: inherit;
@@ -100,19 +100,19 @@ display: none;
 }
 
 /* FIX ALIGNMENT */
-.begin, .nxt-btn {
+/* .begin {
     color: blue;
     font-weight: bold;
     
 
-    /* display: flex;
+    display: flex;
     text-align: center;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
    
-}
+} */
 
-.results a, .results {
+.results a, .results, .begin, .nxt-btn {
     color: blue;
     font-weight: bold;
     text-decoration: none;
@@ -120,6 +120,7 @@ display: none;
     border: none
 
 }
+
 
 .show {
     display: block;
