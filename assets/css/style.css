@@ -82,7 +82,7 @@ display: none;
 } */
 
 
-.op-btn, .nxt-btn {
+.begin, .op-btn, .nxt-btn {
     padding: 10px 5px;
     text-align: left;
     background-color: inherit;
@@ -100,16 +100,25 @@ display: none;
 }
 
 /* FIX ALIGNMENT */
-.nxt-btn {
-    margin-left: 150px; 
+.begin, .nxt-btn {
     color: blue;
     font-weight: bold;
+    
 
     /* display: flex;
     text-align: center;
     justify-content: center;
     align-items: center; */
    
+}
+
+.results a, .results {
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+    background: white;
+    border: none
+
 }
 
 .show {

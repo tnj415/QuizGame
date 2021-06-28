@@ -2,6 +2,7 @@ var quizContainer = document.querySelector(".quiz-container")
 var preScreen = document.querySelector(".pre-screen")
 var beginGame = document.querySelector(".begin")
 var nxtBtn = document.querySelector(".nxt-btn")
+var results = document.querySelector(".results")
 
 var opBtn = document.querySelectorAll(".op-btn")
 
@@ -29,8 +30,6 @@ function beginQuiz() {
     setNextQuestion()
 }
 
-
-
 function setNextQuestion() {
 
    if (currQ > 0) reset()
@@ -41,7 +40,7 @@ function setNextQuestion() {
 
 function showQuestion(question) {
 
-    //     console.log(questions) //should print the whole questions array
+    //   console.log(questions) //should print the whole questions array
     //   console.log(questions[0]) //this should be the first element of that array... which is an object.
     //   console.log(questions[0].question) //see how we're working our way through the array's objects?
     //   console.log(questions[0].options[1]) //what do you think this will store? console.log(myVar) to find out!
@@ -95,6 +94,7 @@ function evaluateAns(e) {
         results.classList.add("show")
     }
 
+    console.log(nxtBtn)
     nxtBtn.addEventListener("click", setNextQuestion)
 }
 
@@ -104,15 +104,15 @@ function reset() {
 
     opBtn.forEach((el) => {
 
-        if (el.querySelector("#incorrect-ans"))
+        if (document.querySelector("#incorrect-ans"))
         el.removeAttribute("id", "incorrect-ans")
 
-        else if (el.classList.querySelector("correct-ans"))
+        else if (document.querySelector("#correct-ans"))
         el.removeAttribute("id", "incorrect-ans")
         else alert("something bad happened here")
     })
 
-    if (nxtBtn.classList === "show") {
+    if (nxtBtn.classList.contains("show")) {
         nxtBtn.classList.remove("show")
         nxtBtn.classList.add("hide")
         }
