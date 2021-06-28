@@ -3,14 +3,13 @@ var preScreen = document.querySelector(".pre-screen")
 var beginGame = document.querySelector(".begin")
 var nxtBtn = document.querySelector(".nxt-btn")
 var results = document.querySelector(".results")
-
 var opBtn = document.querySelectorAll(".op-btn")
-
 var askQ = document.querySelector("#question")
 var opA = document.querySelector("#opA")
 var opB = document.querySelector("#opB")
 var opC = document.querySelector("#opC")
 var opD = document.querySelector("#opD")
+var timerEl = document.querySelector("#timer")
 
 beginGame.addEventListener("click", beginQuiz)
 
@@ -21,12 +20,26 @@ opD.addEventListener("click", evaluateAns)
 
 nxtBtn.addEventListener("click", setNextQuestion)
 
+var timer = 60;
 var currQ = 0;
+
+function timerFunction(){
+
+    setInterval(function(){
+        if(timer === 0) {
+            clearInterval(timer = 0)
+        }
+
+    timerDisplay.innerHTML=timeLeft
+    timer--
+    }, 1000)
+}
 
 function beginQuiz() {
 
     preScreen.setAttribute("class", "hide")
     quizContainer.setAttribute("class", "show")
+    if (timer === 60) timerFunction()
     setNextQuestion()
 }
 
@@ -75,6 +88,9 @@ function evaluateAns(e) {
         e.target.setAttribute("id", "correct-ans")
     }
     else {
+        timeLeft -= 5
+        timer.setAttribute("id", "incorectT-effect")
+
         opBtn.forEach((el) => {
             if (el.dataset.correct === "false")
                 el.setAttribute("id", "incorrect-ans")
@@ -117,6 +133,7 @@ function reset() {
         nxtBtn.classList.add("hide")
         }
 
+        if (timeEl.classlist.contains(""))
 
 }
 
