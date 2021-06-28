@@ -1,5 +1,7 @@
 var quizContainer = document.querySelector(".quiz-container");
 var preScreen = document.querySelector(".pre-screen");
+var timedTestChoice = document.querySelector(".timed-test");
+var slowTestChoice = document.querySelector(".slow-test");
 var beginGame = document.querySelector(".begin");
 var results = document.querySelector(".results");
 var opBtn = document.querySelectorAll(".op-btn");
@@ -17,7 +19,12 @@ opB.addEventListener("click", evaluateAns);
 opC.addEventListener("click", evaluateAns);
 opD.addEventListener("click", evaluateAns);
 
+timedTestChoice.addEventListener("click", function(){timedTest = true})
+slowTestChoice.addEventListener("click", function(){timedTest = false})
 
+
+
+var timedTest = false;
 
 var timer = 60;
 var currQ = 0;
@@ -34,8 +41,12 @@ function timerFunction() {
     }, 1000)
 }
 
+function showResults() {
+    window.location = 'https://tnj415.github.io/QuizGame/';
+}
+
 function beginQuiz() {
-    timerFunction();
+    if (timedTest === true) timerFunction();
     preScreen.setAttribute("class", "hide");
     quizContainer.setAttribute("class", "show");
 
@@ -45,10 +56,16 @@ function beginQuiz() {
 
 function setNextQuestion() {
 
-    if (currQ > 0) reset();
+    if (currQ > 0 && timedTest === false) reset();
+    console.log(currQ);
 
-    showQuestion(currQ);
-    evaluateAns();
+    if (timedTest === true && currQ < questions.length) {showQuestion(currQ);}
+    else {showResults()}
+
+    opA.addEventListener("click", evaluateAns);
+    opB.addEventListener("click", evaluateAns);
+    opC.addEventListener("click", evaluateAns);
+    opD.addEventListener("click", evaluateAns);
 }
 
 function showQuestion(question) {
@@ -79,37 +96,39 @@ function showQuestion(question) {
 
 function evaluateAns(e) {
 
-    // console.log(e.target)
-    // console.log(e.target.dataset.correct)
+    if (timedTest === false) {
+        // console.log(e.target)
+        // console.log(e.target.dataset.correct)
 
-    if (e.target.dataset.correct === "true") {
-        opBtn.forEach(el => el.setAttribute("id", "incorrect-ans"));
-        e.target.removeAttribute("id", "incorrect-ans");
-        e.target.setAttribute("id", "correct-ans");
+        if (e.target.dataset.correct === "true") {
+            opBtn.forEach(el => el.setAttribute("id", "incorrect-ans"));
+            e.target.removeAttribute("id", "incorrect-ans");
+            e.target.setAttribute("id", "correct-ans");
+        }
+        else {
+
+            opBtn.forEach((el) => {
+                if (el.dataset.correct === "false")
+                    el.setAttribute("id", "incorrect-ans");
+                else
+                    el.setAttribute("id", "correct-ans");
+            })
+
+            timer -= 5;
+            timerEl.innerHTML = -5;
+            // timerEl.classList.add("incorrectT-effect")
+        }
+
+
+
+        if (currQ === questions.length) {
+
+            results.classList.remove("hide");
+            results.classList.add("show");
+        }
     }
-    else {
-
-        opBtn.forEach((el) => {
-            if (el.dataset.correct === "false")
-                el.setAttribute("id", "incorrect-ans");
-            else
-                el.setAttribute("id", "correct-ans");
-        })
-
-        timer -= 5;
-        timerEl.innerHTML = -5;
-        // timerEl.classList.add("incorrectT-effect")
-    }
-
     currQ++;
-
-    if (currQ === questions.length) {
-  
-        results.classList.remove("hide");
-        results.classList.add("show");
-    }
-
-   setNextQuestion();
+    setNextQuestion();
 }
 
 function reset() {
@@ -127,6 +146,7 @@ function reset() {
     if (timerEl.classList.contains("incorrectT-effect")) {
         timerEl.classList.remove("incorrectT-effect");
     }
+
 
 }
 
