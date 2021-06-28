@@ -53,11 +53,11 @@ function showQuestion(question) {
 
 function evaluateAns(element) {
 
-    if (this.dataset === correct) {
-        opBtn.setAttribute("class", "incorrect-ans")
-        this.removeAttribute("class", "incorrect-ans")
-        this.setAttribute("class", "correct-ans")
-    }
+//     if (this.dataset === correct) {
+//         opBtn.setAttribute("class", "incorrect-ans")
+//         this.removeAttribute("class", "incorrect-ans")
+//         this.setAttribute("class", "correct-ans")
+//    }
 
 }
 
