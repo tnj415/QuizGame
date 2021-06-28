@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f85c83d532.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./assets/css/scores-style.css">
     <title>Scores</title>
 </head>
+
 <body>
-    <h1>here are the scores</h1>
+    <header>
+    <nav><a href="homescreen.html"><i class="fas fa-home"></i></a></nav>
+    </header>
+
+<main>
+    <section class="user-input-card">
+        <h2 placeholder="user-score" id="user-score">Your Score</h2>
+        <form>
+        <input placeholder="Your Name"/>
+        <button class="submit">Submit</button>
+        <form>
+ </section>
+        <script>// Check browser support
+            if (typeof (Storage) !== "undefined") {
+                // Retrieve
+                document.getElementById("scoreLog").innerHTML = localStorage.getItem("scoreLog");
+            } else {
+                document.getElementById("scoreLog").innerHTML = "Browser does not support Web Storage.";
+            }</script>
+
+   </main>
 </body>
+
 </html>

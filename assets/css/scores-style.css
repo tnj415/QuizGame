@@ -1,3 +1,37 @@
 * {
     color: black;
 }
+/* cursor: pointer; */
+body {
+    background-image: url(../img/inside-cover.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: 50%;
+    background-color: white;
+  
+    
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    font-size: 50px;
+}
+
+main {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+#user-score {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+  }

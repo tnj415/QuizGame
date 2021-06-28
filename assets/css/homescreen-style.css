@@ -41,7 +41,9 @@ main {
     margin: 10px 20px;
     display: block;
     border-bottom: 1px solid black;
+}
 
-    
+.start-quiz:hover, .high-scores:hover {
+    cursor: pointer;
 
 }

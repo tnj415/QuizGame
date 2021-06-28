@@ -13,7 +13,8 @@ var opC = document.querySelector("#opC");
 var opD = document.querySelector("#opD");
 var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
-var scoreLog = localStorage.getItem("score");
+var scoreLog = localStorage.getItem("scoreLog");
+//window.localStorage.clear();
 
 
 opA.addEventListener("click", evaluateAns);
@@ -58,6 +59,7 @@ function timerFunction() {
 
 function showResults() {
  
+
     if (timedTest) {
         localStorage.setItem("scoreLog", timer);
     }
@@ -66,7 +68,16 @@ function showResults() {
     }
     else alert("error in showResults() if statement")
 
-    window.location = 'https://tnj415.github.io/QuizGame/scores.html';
+    
+
+
+
+window.location = "scores.html";
+
+
+    // window.location = 'https://tnj415.github.io/QuizGame/scores.html';
+    
+
 }
 
 function beginQuiz() {
