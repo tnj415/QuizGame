@@ -1,5 +1,6 @@
 * {
     font-size: 20px;
+    font-family: 'Gochi Hand', cursive;
     
 }
 
@@ -13,7 +14,6 @@ h1 {
 body {
     display: flex;
     flex-direction: column;
-    font-family: 'Patrick Hand SC', cursive;
     color: black
 }
 
@@ -56,15 +56,15 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 60vh;
+    margin-top: 70px;
+   
+   
 }
 
 .questions-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40vw;
     padding: 10px 20px;
     border-radius: 5px;
     flex-wrap: wrap;
@@ -83,7 +83,7 @@ display: none;
    display:block
 } */
 
-.option-btn {
+.option-btn button {
     padding: 10px 5px;
     text-align: left;
     background-color: inherit;
@@ -94,14 +94,17 @@ display: none;
 
 }
 
-.option-btn:hover {
+.option-btn button:hover {
 
     border: 2px dotted rgb(145, 145, 145, 20);
     border-radius: 20px;
 }
 
+.show {
+    display: block;
+}
 .hide {
-    display: hidden;
+    display: none;
 }
 
 .correct-ans {
