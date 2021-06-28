@@ -28,8 +28,6 @@ nav {
 
 nav a {
     padding-left: 10px;
-    max-height: 3vh;
-    font-size: 30px;
     color: black;
 }
 
@@ -83,7 +81,7 @@ display: none;
    display:block
 } */
 
-.option-btn button {
+.op-btn button {
     padding: 10px 5px;
     text-align: left;
     background-color: inherit;
@@ -94,7 +92,7 @@ display: none;
 
 }
 
-.option-btn button:hover {
+.op-btn button:hover {
 
     border: 2px dotted rgb(145, 145, 145, 20);
     border-radius: 20px;

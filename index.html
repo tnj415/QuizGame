@@ -18,7 +18,7 @@
 
 <body style="background-image: url(./assets/img/notebook-paper.jpg);">
     <nav>
-        <a href="homescreen.html"><i class="fas fa-home"></i></a>
+        <a href="homescreen.html"><i class="fas fa-home" ></i></a>
         <div id="clock">
             <p id="timer-title">seconds remaining</p>
             <p id="timer">60</p>
@@ -39,16 +39,15 @@
 
             <!-- question text container -->
             <section class="quiz-container hide">
-                <h3 id="question">This is where the quiz questions will appear</h3>
+                <h3 id="question"></h3>
                 <!-- answer container -->
-                <ol class="ans-container">
-                    <li class="option-btn" id="answerA"><button>if youhe answer you may be
-                        correct</button></li>
-                    <li class="option-btn" id="answerB"><button>if answer you may be correct</button></li>
-                    <li class="option-btn" id="answerC"><button> if you think this is the answer you may be correct</button></li>
-                    <li class="option-btn" id="answerD"><button>if you thins the answer you may be
-                        correct</button></li>
+                <ol class="op-container">
+                    <li class="op-btn"><button id="opA"></button></li>
+                    <li class="op-btn"><button id="opB"></button></li>
+                    <li class="op-btn"><button id="opC"></button></li>
+                    <li class="op-btn"><button id="opD"></button></li>
                 </ol>
+                <button class="hide">Next Question</button>
             </section>
         </div>
         </section>

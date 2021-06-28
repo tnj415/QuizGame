@@ -1,17 +1,22 @@
 var quizContainer = document.querySelector(".quiz-container");
 var preScreen = document.querySelector(".pre-screen");
 var beginGame = document.querySelector(".begin");
-var questionElement = document.querySelector("#question");
 
+var opBtn = document.querySelectorAll("op-btn");
 
+var askQ = document.querySelector("#question");
 var opA = document.querySelector("#opA");
 var opB = document.querySelector("#opB");
 var opC = document.querySelector("#opC");
 var opD = document.querySelector("#opD");
 
-
-
 beginGame.addEventListener("click", beginQuiz)
+
+opA.addEventListener("click", evaluateAns)
+opB.addEventListener("click", evaluateAns)
+opC.addEventListener("click", evaluateAns)
+opD.addEventListener("click", evaluateAns)
+
 
 function beginQuiz() {
 
@@ -22,36 +27,78 @@ function beginQuiz() {
 
 function setNextQuestion() {
     showQuestion();
+    evaluateAns();
 }
 
-
 function showQuestion(question) {
-    console.log(questions) //should print the whole questions array
-    console.log(questions[0]) //this should be the first element of that array... which is an object.\
-    console.log(questions[0].question) //see how we're working our way through the array's objects?
-    
-    questionElement.innerText = questions[0].question;
 
+    askQ.innerText = questions[0].question;
 
-       console.log(questions[0].options[0].text)
-    
-       opA.innerText = questions[0].options[0].text
+    opA.innerText = questions[0].options[0].text
+    opB.innerText = questions[0].options[1].text
+    opC.innerText = questions[0].options[2].text
+    opD.innerText = questions[0].options[3].text
 
-    // opA.innerText = questions[0].options.text;
-    // opB.innerText = questions[0].options[1];
-    // opC.innerText = questions[0].options[2];
-    // opD.innerText = questions[0].options[3];
-    
+    opA.dataset = questions[0].options[0].correct
+    opB.dataset = questions[0].options[1].correct
+    opC.dataset = questions[0].options[2].correct
+    opD.dataset = questions[0].options[3].correct
+
+    console.log(questions[0].options[0].correct)
+    console.log(questions[0].options[1].correct)
+    console.log(questions[0].options[2].correct)
+    console.log(questions[0].options[3].correct)
+
+}
+
+function evaluateAns(element) {
+
+    if (this.dataset === correct) {
+        opBtn.setAttribute("class", "incorrect-ans")
+        this.removeAttribute("class", "incorrect-ans")
+        this.setAttribute("class", "correct-ans")
+    }
+
 }
 
 var questions = [
     {
-        question: "What is 2 + 2",
+        question: "What is the default value of Object variable?",
         options: [
-            { text: "2", correct: false },
-            { text: "4", correct: true },
-            { text: "6", correct: false },
-            { text: "8", correct: false },
+            { text: "undefined", correct: false },
+            { text: "0", correct: false },
+            { text: "null", correct: true },
+            { text: "not defined", correct: false },
+        ]
+    },
+
+    {
+        question: "What is Abstraction?",
+        options: [
+            { text: "Abstraction is a technique to define different methods of same type", correct: false },
+            { text: "Abstraction is the ability of an object to take on many forms", correct: false },
+            { text: "It refers to the ability to make class abstract in OOP", correct: true },
+            { text: "None of the above", correct: false },
+        ]
+    },
+
+    {
+        question: "What is the default value of Object variable?",
+        options: [
+            { text: "undefined", correct: false },
+            { text: "0", correct: false },
+            { text: "null", correct: true },
+            { text: "not defined", correct: false },
+        ]
+    },
+
+    {
+        question: "What is the default value of Object variable?",
+        options: [
+            { text: "undefined", correct: false },
+            { text: "0", correct: false },
+            { text: "null", correct: true },
+            { text: "not defined", correct: false },
         ]
     }
 ]
