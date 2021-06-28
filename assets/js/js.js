@@ -2,7 +2,7 @@ var quizContainer = document.querySelector(".quiz-container");
 var preScreen = document.querySelector(".pre-screen");
 var timedTestChoice = document.querySelector(".timed-test");
 var slowTestChoice = document.querySelector(".slow-test");
-var beginGame = document.querySelectorAll(".begin");
+// var beginGame = document.querySelector(".begin");
 var results = document.querySelector(".results");
 var nxtBtn = document.querySelector(".nxt-btn")
 var opBtn = document.querySelectorAll(".op-btn");
@@ -24,13 +24,15 @@ opD.addEventListener("click", evaluateAns);
 timedTestChoice.addEventListener("click", function () { 
     timedTest = true;
     //console.log(timedTest);
+    beginQuiz()
 })
 slowTestChoice.addEventListener("click", function () {
      timedTest = false;
     //console.log(timedTest);
+    beginQuiz()
     })
 
-beginGame.addEventListener("click", beginQuiz);
+// beginGame.addEventListener("click", beginQuiz);
 
 
 var timedTest = false;
@@ -203,22 +205,22 @@ var questions = [
     },
 
     {
-        question: "What is the default value of Object variable?",
+        question: "do you think you can guess this one?",
         options: [
-            { text: "undefined", correct: false },
-            { text: "0", correct: false },
-            { text: "null", correct: true },
-            { text: "not defined", correct: false },
+            { text: "maybe", correct: false },
+            { text: "maybe not", correct: false },
+            { text: "maybe", correct: true },
+            { text: "maybe not", correct: false },
         ]
     },
 
     {
-        question: "What is the default value of Object variable?",
+        question: "wertere?",
         options: [
-            { text: "undefined", correct: false },
-            { text: "0", correct: false },
-            { text: "null", correct: true },
-            { text: "not defined", correct: false },
+            { text: "ert", correct: false },
+            { text: "0ert", correct: false },
+            { text: "ewrt", correct: true },
+            { text: "not ewrt", correct: false },
         ]
     }
 ]
