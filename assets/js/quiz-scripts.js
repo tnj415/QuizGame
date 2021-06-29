@@ -42,7 +42,7 @@ slowTestChoice.addEventListener("click", function () {
 var timedTest = false;
 var timer = 6000;
 var currQ = 0;
-var correctLog = 0;
+var correctLog = null;
 var quizCompleted = false;
 
 function timerFunction() {
@@ -181,12 +181,12 @@ function evaluateAns(e) {
 
     }
     else {
-        if (!lastQ && e.target.dataset.correct === "true") { }
-
-        else if (!lastQ && e.target.dataset.correct === "false") {
+       if (e.target.dataset.correct === "false") {
+           console.log("should enter here on false ans selected")
+           console.log("timer = " + timer)
             timerEl.classList.add("incorrectT-effect")
-            timer -= 10;
-            timerEl.innerHTML = -10;
+            timer -= 1000;
+            $(".quiz-container").css("background-color", "red")
 
             //only happens for a split second
             if (timerEl.classList.contains("incorrectT-effect")) {
@@ -207,6 +207,7 @@ function evaluateAns(e) {
         currQ++;
         if (timedTest) setNextQuestion();
         else nxtBtn.addEventListener("click", setNextQuestion);
+        //$(".quiz-container").css("background-color", "white")
     }
     else {
         showResults()
