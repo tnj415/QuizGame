@@ -52,23 +52,23 @@ function timerFunction() {
         if (timer <= 0) {
             clearInterval(timer = 0);
 
-            // $(".op-btn").hover(function() {
-            //     $(this).css("border-color", "white");});
+             $(".op-btn").hover(function() {
+                 $(this).css("border-color", "white");});
 
             // quizCompleted = true;
-            // results.classList.remove("hide");
-            // results.classList.add("show");
-            // opA.removeEventListener("click", evaluateAns);
-            // opB.removeEventListener("click", evaluateAns);
-            // opC.removeEventListener("click", evaluateAns);
-            // opD.removeEventListener("click", evaluateAns);
-            // results.addEventListener("click", function () {
-            //     const score = { 0: "iwin" };
-            //     const gametype = { true: "iwin" }
-            //     localStorage.setItem("scoreLog", 0);
-            //     localStorage.setItem("gameType", true);
-            //     window.location = "scores.html";
-            // });
+             results.classList.remove("hide");
+             results.classList.add("show");
+             opA.removeEventListener("click", evaluateAns);
+             opB.removeEventListener("click", evaluateAns);
+             opC.removeEventListener("click", evaluateAns);
+             opD.removeEventListener("click", evaluateAns);
+             results.addEventListener("click", function () {
+                 const score = { 0: "iwin" };
+                 const gametype = { true: "iwin" }
+                localStorage.setItem("scoreLog", 0);
+                 localStorage.setItem("gameType", true);
+                 window.location = "scores.html";
+             });
         }
 
         timerEl.innerHTML = (timer / 100).toFixed(2);
