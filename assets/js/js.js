@@ -35,7 +35,7 @@ slowTestChoice.addEventListener("click", function () {
     beginQuiz()
 })
 
-results.addEventListener("click", showResults)
+//results.addEventListener("click", showResults)
 
 // beginGame.addEventListener("click", beginQuiz);
 
@@ -50,7 +50,7 @@ function timerFunction() {
     setInterval(function () {
         if (timer <= 0) {
             clearInterval(timer = 0);
-            results()
+            showResults()
         }
 
         timerEl.innerHTML = timer;
@@ -59,7 +59,7 @@ function timerFunction() {
 }
 
 function showResults() {
- 
+
 
     if (timedTest) {
         localStorage.setItem("scoreLog", timer);
@@ -69,18 +69,38 @@ function showResults() {
     }
     else alert("error in showResults() if statement")
 
-    
-
     localStorage.setItem("gameType", timedTest);
 
-window.location = "scores.html";
-
-
-    // window.location = 'https://tnj415.github.io/QuizGame/scores.html';
-    
+    // window.location = "scores.html";
 
 }
 
+function endQuiz (e) {
+
+    // if (e.target.dataset.correct === "true" ||
+    // e.target.dataset.correct === "false") {
+
+ 
+        showResults();
+
+    opA.removeEventListener("click", handleMousedown);
+    opB.removeEventListener("click", handleMousedown);
+    opC.removeEventListener("click", handleMousedown);
+    opD.removeEventListener("click", handleMousedown);
+
+    
+console.log("timer: " + timer);
+console.log("C log: " + correctLog);
+results.classList.remove("hide");
+results.classList.add("show");
+nxtBtn.classList.remove("show");
+nxtBtn.classList.add("hide");
+
+results.addEventListener("click", function () {
+
+    window.location = "scores.html";
+})
+}
 function beginQuiz() {
     if (timedTest === true) {
         timerTitleEl.removeAttribute("class", "hide")
@@ -100,11 +120,11 @@ function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
 
-//might need questions.length - 1
-//and have a different condition for last question
+    //might need questions.length - 1
+    //and have a different condition for last question
     // if (timedTest === true && currQ < questions.length) {showQuestion(currQ);}
     if (currQ < questions.length) { showQuestion(currQ); }
-    else { showResults() }
+    //else { showResults() }
 
     opA.addEventListener("click", evaluateAns);
     opB.addEventListener("click", evaluateAns);
@@ -140,8 +160,8 @@ function showQuestion(question) {
 
 function evaluateAns(e) {
 
-var lastQ = false
-if (currQ === questions.length - 1) lastQ = true;
+    var lastQ = false
+    if (currQ === questions.length - 1) lastQ = true;
 
     if (!timedTest) {
         // console.log(e.target)
@@ -167,32 +187,33 @@ if (currQ === questions.length - 1) lastQ = true;
 
     }
     else {
-        timerEl.classList.add("incorrectT-effect")
-        timer -= 5;
-        timerEl.innerHTML = -5;
+        if (!lastQ && e.target.dataset.correct === "true") { }
 
-        //only happens for a split second
-        if (timerEl.classList.contains("incorrectT-effect")) {
-            timerEl.classList.remove("incorrectT-effect")
-            timerEl.classList.add("correctT-effects")
+        else if (!lastQ && e.target.dataset.correct === "false") {
+            timerEl.classList.add("incorrectT-effect")
+            timer -= 10;
+            timerEl.innerHTML = -10;
+
+            //only happens for a split second
+            if (timerEl.classList.contains("incorrectT-effect")) {
+                timerEl.classList.remove("incorrectT-effect")
+                timerEl.classList.add("correctT-effects")
+            }
+        }
+        else if (lastQ) {
+            endQuiz()
+
         }
     }
 
-//might need different condition if last question
+    //might need different condition if last question
 
-if (!lastQ) {
-    currQ++;
-    if (timedTest) setNextQuestion();
-    else nxtBtn.addEventListener("click", setNextQuestion);
-}
-else {
-    console.log("timer: " + timer);
-    console.log("C log: " + correctLog);
-    results.classList.remove("hide");
-    results.classList.add("show");
-    nxtBtn.classList.remove("show");
-    nxtBtn.classList.add("hide");
-}
+    if (!lastQ) {
+        currQ++;
+        if (timedTest) setNextQuestion();
+        else nxtBtn.addEventListener("click", setNextQuestion);
+    
+    }
 }
 
 function reset() {
