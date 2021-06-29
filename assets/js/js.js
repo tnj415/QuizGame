@@ -75,32 +75,6 @@ function showResults() {
 
 }
 
-function endQuiz (e) {
-
-    // if (e.target.dataset.correct === "true" ||
-    // e.target.dataset.correct === "false") {
-
- 
-        showResults();
-
-    opA.removeEventListener("click", handleMousedown);
-    opB.removeEventListener("click", handleMousedown);
-    opC.removeEventListener("click", handleMousedown);
-    opD.removeEventListener("click", handleMousedown);
-
-    
-console.log("timer: " + timer);
-console.log("C log: " + correctLog);
-results.classList.remove("hide");
-results.classList.add("show");
-nxtBtn.classList.remove("show");
-nxtBtn.classList.add("hide");
-
-results.addEventListener("click", function () {
-
-    window.location = "scores.html";
-})
-}
 function beginQuiz() {
     if (timedTest === true) {
         timerTitleEl.removeAttribute("class", "hide")
@@ -201,7 +175,7 @@ function evaluateAns(e) {
             }
         }
         else if (lastQ) {
-            endQuiz()
+            showResults()
 
         }
     }
@@ -212,7 +186,20 @@ function evaluateAns(e) {
         currQ++;
         if (timedTest) setNextQuestion();
         else nxtBtn.addEventListener("click", setNextQuestion);
-    
+    }
+    else {
+
+        console.log("timer: " + timer);
+        console.log("C log: " + correctLog);
+        results.classList.remove("hide");
+        results.classList.add("show");
+        nxtBtn.classList.remove("show");
+        nxtBtn.classList.add("hide");
+
+        results.addEventListener("click", function () {
+
+            window.location = "scores.html";
+        })
     }
 }
 
