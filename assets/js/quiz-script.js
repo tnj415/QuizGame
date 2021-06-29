@@ -40,7 +40,7 @@ slowTestChoice.addEventListener("click", function () {
 // beginGame.addEventListener("click", beginQuiz);
 
 var timedTest = false;
-var timer = 1000;
+var timer = 6000;
 var currQ = 0;
 var correctLog = 0;
 var quizCompleted = false;
