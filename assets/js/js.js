@@ -40,7 +40,7 @@ slowTestChoice.addEventListener("click", function () {
 // beginGame.addEventListener("click", beginQuiz);
 
 var timedTest = false;
-var timer = 500;
+var timer = 1000;
 var currQ = 0;
 var correctLog = 0;
 var quizCompleted = false;
@@ -50,7 +50,20 @@ function timerFunction() {
     setInterval(function () {
         if (timer <= 0) {
             clearInterval(timer = 0);
-            showResults()
+
+            results.classList.remove("hide");
+            results.classList.add("show");
+            opA.removeEventListener("click", evaluateAns);
+            opB.removeEventListener("click", evaluateAns);
+            opC.removeEventListener("click", evaluateAns);
+            opD.removeEventListener("click", evaluateAns);
+            results.addEventListener("click", function () {
+                const score = { 0: "iwin" };
+                const gametype = { true: "iwin" }
+                localStorage.setItem("scoreLog", 0);
+                localStorage.setItem("gameType", true);
+                window.location = "scores.html";
+            });
         }
 
         timerEl.innerHTML = (timer / 100).toFixed(2);
@@ -61,20 +74,6 @@ function timerFunction() {
 
 function showResults() {
 
-    if (timer === 0) {
-        opA.removeEventListener("click", function() {
-            results.classList.add("show");
-        });
-        opB.removeEventListener("click", function() {
-            results.classList.add("show");
-        });
-        opC.removeEventListener("click", function() {
-            results.classList.add("show");
-        });
-        opD.removeEventListener("click", function() {
-            results.classList.add("show");
-        });
-    }
     console.log("correctLog = " + correctLog);
     if (!localStorage.hasOwnProperty("scoreLog")) {
         quizCompleted = true
@@ -211,7 +210,7 @@ function evaluateAns(e) {
     }
     else {
         showResults()
-    
+
         results.classList.remove("hide");
         results.classList.add("show");
         nxtBtn.classList.remove("show");
