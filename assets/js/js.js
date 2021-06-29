@@ -14,6 +14,7 @@ var opD = document.querySelector("#opD");
 var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
 var scoreLog = localStorage.getItem("scoreLog");
+var gameType = localStorage.getItem("gameType")
 //window.localStorage.clear();
 
 
@@ -70,7 +71,7 @@ function showResults() {
 
     
 
-
+    localStorage.setItem("gameType", timedTest);
 
 window.location = "scores.html";
 
