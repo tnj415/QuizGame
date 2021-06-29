@@ -15,7 +15,7 @@ var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
 var scoreLog = localStorage.getItem("scoreLog");
 var gameType = localStorage.getItem("gameType")
-//window.localStorage.clear();
+window.localStorage.clear();
 
 
 opA.addEventListener("click", evaluateAns);
@@ -39,7 +39,6 @@ slowTestChoice.addEventListener("click", function () {
 
 // beginGame.addEventListener("click", beginQuiz);
 
-
 var timedTest = false;
 var timer = 60;
 var currQ = 0;
@@ -60,7 +59,7 @@ function timerFunction() {
 
 function showResults() {
 
-
+ if (!localStorage.hasOwnProperty("scoreLog")) {
     if (timedTest) {
         localStorage.setItem("scoreLog", timer);
     }
@@ -70,6 +69,7 @@ function showResults() {
     else alert("error in showResults() if statement")
 
     localStorage.setItem("gameType", timedTest);
+}
 
     // window.location = "scores.html";
 
@@ -91,7 +91,7 @@ function beginQuiz() {
 }
 
 function setNextQuestion() {
-
+    
     if (currQ > 0 && timedTest === false) reset();
 
     //might need questions.length - 1
@@ -100,10 +100,11 @@ function setNextQuestion() {
     if (currQ < questions.length) { showQuestion(currQ); }
     //else { showResults() }
 
-    opA.addEventListener("click", evaluateAns);
-    opB.addEventListener("click", evaluateAns);
-    opC.addEventListener("click", evaluateAns);
-    opD.addEventListener("click", evaluateAns);
+        opA.addEventListener("click", evaluateAns);
+        opB.addEventListener("click", evaluateAns);
+        opC.addEventListener("click", evaluateAns);
+        opD.addEventListener("click", evaluateAns);
+
 }
 
 function showQuestion(question) {
@@ -134,7 +135,8 @@ function showQuestion(question) {
 
 function evaluateAns(e) {
 
-    var lastQ = false
+    var lastQ = false;
+
     if (currQ === questions.length - 1) lastQ = true;
 
     if (!timedTest) {
@@ -175,7 +177,8 @@ function evaluateAns(e) {
             }
         }
         else if (lastQ) {
-            showResults()
+
+            showResults();
 
         }
     }

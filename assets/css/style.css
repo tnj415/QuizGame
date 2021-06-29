@@ -1,15 +1,16 @@
 * {
-    font-size: 20px;
+    color: black;
     font-family: 'Gochi Hand', cursive;
+    font-size: 20px
     
 }
 
 /* questions-card */
-h3,
+/* h3,
 h1 {
     text-align: center;
     padding-bottom: 10px;
-}
+} */
 
 body {
     display: flex;
@@ -17,6 +18,21 @@ body {
     color: black
 }
 
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 50px !important;
+}
+
+/* nav {
+    font-size: 50px !important;
+    width: 100px;
+} */
+
+/* header {
+    font-size: 50px !important;
+}
 nav {
     display: flex;
     flex-direction: row;
@@ -24,12 +40,14 @@ nav {
     align-items: center;
     padding-bottom: 0px;
     margin-bottom: 0px;
+    
 }
 
 nav a {
     padding-left: 10px;
     color: black;
-}
+    
+} */
 
 nav a:hover {
     color: rgb(219, 121, 108);
@@ -42,7 +60,7 @@ nav a:hover {
     text-align: center;
     align-items: center;
     margin-right: 5%;
-    background-color: rgb(255, 255, 255, .75);
+    /* background-color: rgb(255, 255, 255, .75); */
     font-weight: bold;
 }
 
