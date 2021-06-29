@@ -15,7 +15,7 @@ setScore()
 
 function setScore() {
 if (gameType) setScoreEl.textContent = parseInt(score, 10)/100;
-else if (!gameType) setScoreEl.textContent = score;
+else if (!gameType) setScoreEl.textContent = score.toFixed(2);
 else alert("problem setting score");
 }
 
@@ -36,10 +36,14 @@ function showResponse(e) {
 
     e.preventDefault();
     console.log(ms2)
-
+if (localStorage.hasOwnProperty("scoreLog")) {
     $(".score-card").css("padding-bottom", "6px")
-    var response = "Welcome to the Leader-board " + ms2 + "!";
+    var response = ms2 + " is a contender!";
     submissionResponseEl.textContent = response
+    // $("leader-board-enter").removeClass(".hide")
+    // $("leader-board-enter").addClass(".show")
+}
+else {submissionResponseEl.textContent = "You are not a contender!";}
 }
 
 submitEl.addEventListener("click", showResponse);

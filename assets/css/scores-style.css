@@ -17,7 +17,12 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    font-size: 50px !important;
+    font-size: 50px;
+}
+
+.home-button a:hover {
+
+    color: grey !important;
 }
 
 main {
@@ -61,6 +66,12 @@ input {
     border: 2px solid black;
 }
 
+#submit:hover {
+
+    background-color: grey;
+    border: 2px solid grey;
+}
+
 
 
 #user-score {
@@ -71,6 +82,22 @@ input {
     font-size: 18px;
   }
 
+  .leader-board-enter {
+      background-color: black;
+      border: 2px solid black;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+  }
+
+  .leader-board-enter:hover {
+      background-color: grey;
+      border: 2px solid grey;
+  }
   .hide {
       display:none;
+  }
+
+  .show {
+      display: block;
   }

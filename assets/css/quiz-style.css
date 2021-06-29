@@ -42,15 +42,16 @@ nav {
     margin-bottom: 0px;
     
 }
-
-nav a {
+*/
+.home-button a {
     padding-left: 10px;
     color: black;
+    font-size: 50px !important;
     
-} */
+}
 
-nav a:hover {
-    color: rgb(219, 121, 108);
+.home-button a:hover {
+    color: rgb(219, 121, 108) !important;
     cursor: pointer;
 }
 

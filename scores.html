@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <nav><a href="index.html"><i class="fas fa-home"></i></a></nav>
+        <nav class="home-button"><a href="index.html"><i class="fas fa-home"></i></a></nav>
     </header>
     <p style="font-size: 20px; text-align: center; font-weight: bold;" class="gameType">Game Type Here</p>
 
@@ -31,13 +31,17 @@
                 <button id="submit">Submit</button>
 
                 <h3 id="response"></h3>
+                <button class="leader-board-enter hide">Lets see how you stack up!</button>
 
             </form>
           
 
         </section>
-        <section class="hide leader-board">
+        <section class="leader-board hide">
             <h2>Leader Board</h2>
+            <article class="board-content" id="1place">1st Place</article>
+            <article class="board-content" id="2place">2nd Place</article>
+            <article class="board-content" id="3place">3rd Place</article>
 
         </section>
 

@@ -15,7 +15,8 @@ var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
 var scoreLog = localStorage.getItem("scoreLog");
 var gameType = localStorage.getItem("gameType")
-window.localStorage.clear();
+//window.localStorage.clear();
+localStorage.removeItem("scoreLog");
 
 
 opA.addEventListener("click", evaluateAns);
@@ -51,19 +52,23 @@ function timerFunction() {
         if (timer <= 0) {
             clearInterval(timer = 0);
 
-            results.classList.remove("hide");
-            results.classList.add("show");
-            opA.removeEventListener("click", evaluateAns);
-            opB.removeEventListener("click", evaluateAns);
-            opC.removeEventListener("click", evaluateAns);
-            opD.removeEventListener("click", evaluateAns);
-            results.addEventListener("click", function () {
-                const score = { 0: "iwin" };
-                const gametype = { true: "iwin" }
-                localStorage.setItem("scoreLog", 0);
-                localStorage.setItem("gameType", true);
-                window.location = "scores.html";
-            });
+            // $(".op-btn").hover(function() {
+            //     $(this).css("border-color", "white");});
+
+            // quizCompleted = true;
+            // results.classList.remove("hide");
+            // results.classList.add("show");
+            // opA.removeEventListener("click", evaluateAns);
+            // opB.removeEventListener("click", evaluateAns);
+            // opC.removeEventListener("click", evaluateAns);
+            // opD.removeEventListener("click", evaluateAns);
+            // results.addEventListener("click", function () {
+            //     const score = { 0: "iwin" };
+            //     const gametype = { true: "iwin" }
+            //     localStorage.setItem("scoreLog", 0);
+            //     localStorage.setItem("gameType", true);
+            //     window.location = "scores.html";
+            // });
         }
 
         timerEl.innerHTML = (timer / 100).toFixed(2);
@@ -75,9 +80,11 @@ function timerFunction() {
 function showResults() {
 
     console.log("correctLog = " + correctLog);
-    if (!localStorage.hasOwnProperty("scoreLog")) {
+    // if (!localStorage.hasOwnProperty("scoreLog")) {
+        if(!quizCompleted) {
         quizCompleted = true
         if (timedTest) {
+            
             localStorage.setItem("scoreLog", timer);
         }
         else if (!timedTest) {
@@ -156,7 +163,7 @@ function evaluateAns(e) {
 
     if (currQ === questions.length - 1) lastQ = true;
 
-    if (!timedTest) {
+    if (!timedTest && quizCompleted === false) {
         // console.log(e.target)
         // console.log(e.target.dataset.correct)
         nxtBtn.removeAttribute("class", "hide");
@@ -181,7 +188,7 @@ function evaluateAns(e) {
 
     }
     else {
-       if (e.target.dataset.correct === "false") {
+       if (e.target.dataset.correct === "false" && quizCompleted === false) {
            console.log("should enter here on false ans selected")
            console.log("timer = " + timer)
             timerEl.classList.add("incorrectT-effect")
@@ -213,10 +220,11 @@ function evaluateAns(e) {
         showResults()
 
         results.classList.remove("hide");
-        results.classList.add("show");
+       results.classList.add("show");
         nxtBtn.classList.remove("show");
         nxtBtn.classList.add("hide");
-
+        $(".op-btn").hover(function() {
+            $(this).css("border-color", "white");});
         results.addEventListener("click", function () {
 
             window.location = "scores.html";
