@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mina&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f85c83d532.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+   
+    <title>Quiz</title>
+
+</head>
+
+<body style="background-image: url(./assets/img/notebook-paper.jpg);">
+    <header>
+        <nav><a href="homescreen.html"><i class="fas fa-home" ></i></a></nav>
+        <div id="clock">
+            <p class="hide" id="timer-title">seconds remaining</p>
+            <p class="hide" id="timer">00</p>
+        </div>
+    </header>
+    <main>
+        <div class="questions-card">
+            <!--Pre-screen-->
+            <section class="pre-screen">
+
+                <H1>Information</H1>
+                <p>This is an assessment of your knowledge about coding!</p>
+                <p>You can choose to take the timed or un-timed test!</p>
+                <p>Timed: Every wrong answer will deduct extra time!</p>
+                <p>Un-timed: See how many correct answers you can get!</p>
+                <!-- begin class -->
+                <button class="timed-test">Timed</button>
+                <button class="slow-test" style="float: right;">Un-Timed</button>
+
+            </section>
+            
+
+            <!-- question text container -->
+            <section class="quiz-container hide">
+                <h3 id="question"></h3>
+                <!-- answer container -->
+                <ol class="op-container">
+                    <li><button class="op-btn" id="opA"></button></li>
+                    <li><button class="op-btn" id="opB"></button></li>
+                    <li><button class="op-btn" id="opC"></button></li>
+                    <li><button class="op-btn" id="opD"></button></li>
+                </ol>
+                <button class="hide" id="nxt-btn">Next</button>
+               <button class="hide" id="results">Log Your Results</button>
+            </section>
+        </div>
+        </section>
+    </main>
+    
+    <script src="./assets/js/js.js"></script>
+</body>
+
+</html>
