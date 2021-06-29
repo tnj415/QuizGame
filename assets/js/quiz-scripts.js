@@ -209,15 +209,7 @@ function evaluateAns(e) {
                 timerEl.classList.add("correctT-effects")
             }
         }
-        // else if (lastQ) {
-
-        //     showResults();
-
-        // }
-    }
-
-    //might need different condition if last question
-
+    
     if (!lastQ) {
 console.log("Entered line 222")
         if (timedTest) setNextQuestion();
@@ -254,10 +246,6 @@ console.log("Entered line 222")
         })
     }
 
-    // if (enterOnce === true){
-    //     enterOnce = false;
-
-    // }
 }
 
 function reset() {
@@ -273,7 +261,7 @@ function reset() {
 
         else if (document.querySelector("#correct-ans"))
             el.removeAttribute("id", "incorrect-ans");
-        else alert("multiple tags dont have apropriate IDs line 276")
+        else alert("multiple tags dont have appropriate IDs line 276")
     })
 
     if (timerEl.classList.contains("incorrectT-effect")) {
