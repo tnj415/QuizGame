@@ -40,9 +40,10 @@ slowTestChoice.addEventListener("click", function () {
 // beginGame.addEventListener("click", beginQuiz);
 
 var timedTest = false;
-var timer = 60;
+var timer = 500;
 var currQ = 0;
 var correctLog = 0;
+var quizCompleted = false;
 
 function timerFunction() {
 
@@ -52,24 +53,41 @@ function timerFunction() {
             showResults()
         }
 
-        timerEl.innerHTML = timer;
-        --timer;
-    }, 1000)
+        timerEl.innerHTML = (timer / 100).toFixed(2);
+        if (!quizCompleted)
+            --timer;
+    }, 10)
 }
 
 function showResults() {
 
- if (!localStorage.hasOwnProperty("scoreLog")) {
-    if (timedTest) {
-        localStorage.setItem("scoreLog", timer);
+    if (timer === 0) {
+        opA.removeEventListener("click", function() {
+            results.classList.add("show");
+        });
+        opB.removeEventListener("click", function() {
+            results.classList.add("show");
+        });
+        opC.removeEventListener("click", function() {
+            results.classList.add("show");
+        });
+        opD.removeEventListener("click", function() {
+            results.classList.add("show");
+        });
     }
-    else if (!timedTest) {
-        localStorage.setItem("scoreLog", correctLog);
-    }
-    else alert("error in showResults() if statement")
+    console.log("correctLog = " + correctLog);
+    if (!localStorage.hasOwnProperty("scoreLog")) {
+        quizCompleted = true
+        if (timedTest) {
+            localStorage.setItem("scoreLog", timer);
+        }
+        else if (!timedTest) {
+            localStorage.setItem("scoreLog", correctLog);
+        }
+        else alert("error in showResults() if statement")
 
-    localStorage.setItem("gameType", timedTest);
-}
+        localStorage.setItem("gameType", timedTest);
+    }
 
     // window.location = "scores.html";
 
@@ -91,7 +109,7 @@ function beginQuiz() {
 }
 
 function setNextQuestion() {
-    
+
     if (currQ > 0 && timedTest === false) reset();
 
     //might need questions.length - 1
@@ -100,10 +118,10 @@ function setNextQuestion() {
     if (currQ < questions.length) { showQuestion(currQ); }
     //else { showResults() }
 
-        opA.addEventListener("click", evaluateAns);
-        opB.addEventListener("click", evaluateAns);
-        opC.addEventListener("click", evaluateAns);
-        opD.addEventListener("click", evaluateAns);
+    opA.addEventListener("click", evaluateAns);
+    opB.addEventListener("click", evaluateAns);
+    opC.addEventListener("click", evaluateAns);
+    opD.addEventListener("click", evaluateAns);
 
 }
 
@@ -150,6 +168,7 @@ function evaluateAns(e) {
             e.target.removeAttribute("id", "incorrect-ans");
             e.target.setAttribute("id", "correct-ans");
             correctLog++;
+            console.log("clog = " + correctLog);
         }
         else {
 
@@ -176,11 +195,11 @@ function evaluateAns(e) {
                 timerEl.classList.add("correctT-effects")
             }
         }
-        else if (lastQ) {
+        // else if (lastQ) {
 
-            showResults();
+        //     showResults();
 
-        }
+        // }
     }
 
     //might need different condition if last question
@@ -191,9 +210,8 @@ function evaluateAns(e) {
         else nxtBtn.addEventListener("click", setNextQuestion);
     }
     else {
-
-        console.log("timer: " + timer);
-        console.log("C log: " + correctLog);
+        showResults()
+    
         results.classList.remove("hide");
         results.classList.add("show");
         nxtBtn.classList.remove("show");
