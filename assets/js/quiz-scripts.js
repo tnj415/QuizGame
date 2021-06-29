@@ -45,6 +45,7 @@ var timer = 6000;
 var currQ = 0;
 var correctLog = null;
 var quizCompleted = false;
+var enterOnce = true;
 
 function timerFunction() {
 
@@ -52,23 +53,25 @@ function timerFunction() {
         if (timer <= 0) {
             clearInterval(timer = 0);
 
-             $(".op-btn").hover(function() {
-                 $(this).css("border-color", "white");});
+            $(".op-btn").hover(function () {
+                $(this).css("border-color", "white");
+                $(this).css("cursor", "default")
+            });
 
             // quizCompleted = true;
-             results.classList.remove("hide");
-             results.classList.add("show");
-             opA.removeEventListener("click", evaluateAns);
-             opB.removeEventListener("click", evaluateAns);
-             opC.removeEventListener("click", evaluateAns);
-             opD.removeEventListener("click", evaluateAns);
-             results.addEventListener("click", function () {
-                 const score = { 0: "iwin" };
-                 const gametype = { true: "iwin" }
+            results.classList.remove("hide");
+            results.classList.add("show");
+            opA.removeEventListener("click", evaluateAns);
+            opB.removeEventListener("click", evaluateAns);
+            opC.removeEventListener("click", evaluateAns);
+            opD.removeEventListener("click", evaluateAns);
+            results.addEventListener("click", function () {
+                const score = { 0: "iwin" };
+                const gametype = { true: "iwin" }
                 localStorage.setItem("scoreLog", 0);
-                 localStorage.setItem("gameType", true);
-                 window.location = "scores.html";
-             });
+                localStorage.setItem("gameType", true);
+                window.location = "scores.html";
+            });
         }
 
         timerEl.innerHTML = (timer / 100).toFixed(2);
@@ -81,10 +84,10 @@ function showResults() {
 
     console.log("correctLog = " + correctLog);
     // if (!localStorage.hasOwnProperty("scoreLog")) {
-        if(!quizCompleted) {
+    if (!quizCompleted) {
         quizCompleted = true
         if (timedTest) {
-            
+
             localStorage.setItem("scoreLog", timer);
         }
         else if (!timedTest) {
@@ -100,6 +103,7 @@ function showResults() {
 }
 
 function beginQuiz() {
+    console.log("currQ = " + currQ)
     if (timedTest === true) {
         timerTitleEl.removeAttribute("class", "hide")
         timerTitleEl.setAttribute("class", "show")
@@ -128,6 +132,8 @@ function setNextQuestion() {
     opB.addEventListener("click", evaluateAns);
     opC.addEventListener("click", evaluateAns);
     opD.addEventListener("click", evaluateAns);
+
+    enterOnce = true;
 
 }
 
@@ -177,6 +183,8 @@ function evaluateAns(e) {
             console.log("clog = " + correctLog);
         }
         else {
+            $('#root').addClass(".overlay").css("background-color", "rgba(251, 9, 9, 0.637)");
+            $(".overlay").css("transition", "cubic-bezier(1,1,0,0)");
 
             opBtn.forEach((el) => {
                 if (el.dataset.correct === "false")
@@ -188,12 +196,12 @@ function evaluateAns(e) {
 
     }
     else {
-       if (e.target.dataset.correct === "false" && quizCompleted === false) {
-           console.log("should enter here on false ans selected")
-           console.log("timer = " + timer)
+        if (e.target.dataset.correct === "false" && quizCompleted === false) {
+            console.log("should enter here on false ans selected")
+            console.log("timer = " + timer)
             timerEl.classList.add("incorrectT-effect")
             timer -= 1000;
-            $(".quiz-container").css("background-color", "red")
+            $(".question-card").css("background-color", "red")
 
             //only happens for a split second
             if (timerEl.classList.contains("incorrectT-effect")) {
@@ -211,29 +219,49 @@ function evaluateAns(e) {
     //might need different condition if last question
 
     if (!lastQ) {
-        currQ++;
+console.log("Entered line 222")
         if (timedTest) setNextQuestion();
-        else nxtBtn.addEventListener("click", setNextQuestion);
-        //$(".quiz-container").css("background-color", "white")
+        else {
+            opA.removeEventListener("click", evaluateAns);
+            opB.removeEventListener("click", evaluateAns);
+            opC.removeEventListener("click", evaluateAns);
+            opD.removeEventListener("click", evaluateAns);
+            nxtBtn.addEventListener("click", function() {
+                console.log("Entered event Listener")
+                reset();
+                setNextQuestion();
+                });
+            //$(".quiz-container").css("background-color", "white")
+        }
     }
+
     else {
         showResults()
 
         results.classList.remove("hide");
-       results.classList.add("show");
+        results.classList.add("show");
         nxtBtn.classList.remove("show");
         nxtBtn.classList.add("hide");
-        $(".op-btn").hover(function() {
-            $(this).css("border-color", "white");});
+
+        $(".op-btn").hover(function () {
+            $(this).css("border-color", "white");
+            $(this).css("cursor", "default")
+        });
+
         results.addEventListener("click", function () {
 
             window.location = "scores.html";
         })
     }
+
+    // if (enterOnce === true){
+    //     enterOnce = false;
+
+    // }
 }
 
 function reset() {
-
+    // currQ++;
     if (nxtBtn.classList.contains("show")) {
         nxtBtn.removeAttribute("class", "show");
         nxtBtn.setAttribute("class", "hide");
@@ -245,7 +273,7 @@ function reset() {
 
         else if (document.querySelector("#correct-ans"))
             el.removeAttribute("id", "incorrect-ans");
-        else alert("something bad happened here")
+        else alert("multiple tags dont have apropriate IDs line 276")
     })
 
     if (timerEl.classList.contains("incorrectT-effect")) {
@@ -257,7 +285,7 @@ function reset() {
 
 var questions = [
     {
-        question: "What is the default value of Object variable?",
+        question: "1st Q?",
         options: [
             { text: "undefined", correct: false },
             { text: "0", correct: false },
@@ -267,7 +295,7 @@ var questions = [
     },
 
     {
-        question: "What is Abstraction?",
+        question: "2?",
         options: [
             { text: "Abstraction is a technique to define different methods of same type", correct: false },
             { text: "Abstraction is the ability of an object to take on many forms", correct: false },
@@ -277,7 +305,7 @@ var questions = [
     },
 
     {
-        question: "do you think you can guess this one?",
+        question: "3?",
         options: [
             { text: "maybe", correct: false },
             { text: "maybe not", correct: false },
