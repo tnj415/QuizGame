@@ -1,17 +1,23 @@
 var nameInput = document.querySelector("#name");
 var submitEl = document.querySelector("#submit");
-//var setGameTypeEl = document.querySelector("gameType");
+var setGameTypeEl = document.querySelector("gameType");
 var submissionResponseEl = document.querySelector("#response");
 document.getElementById("scoreLog").innerHTML = localStorage.getItem("scoreLog");
-//document.getElementById("gameType").innerHTML = localStorage.getItem("gameType");
+// setGameTypeEl = localStorage.getItem("gameType");
+var MYgameType = localStorage.getItem("gameType");
 
-// function setGameType() {
-//     if (setGameTypeEl)
-//     setGameTypeEl.textContent = "Timed Test Score";
-//     else if (!setGameTypeEl)
-//     setGameTypeEl.textContent = "Slow Test Score";
-//     else alert("problem setting Game Type");
-// }
+console.log("MYgameType = " + localStorage.getItem("gameType") )
+
+setGameType()
+
+function setGameType() {
+if (MYgameType)
+setGameTypeEl.textContent = "Timed Test Score";
+else if (!MYgameType)
+setGameTypeEl.textContent = "Slow Test Score";
+else alert("problem setting Game Type");
+}
+
 function showResponse(e) {
 
 var myString = nameInput.value;
