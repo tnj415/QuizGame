@@ -26,6 +26,13 @@ main {
     justify-content: center;
 }
 
+.score-display {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 
 
 #user-score {

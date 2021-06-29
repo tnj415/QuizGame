@@ -1,5 +1,6 @@
-var scoreInput = document.querySelector("#user-score");
 var nameInput = document.querySelector("#name");
+document.getElementById("scoreLog").innerHTML = localStorage.getItem("scoreLog");
+
 
 function submitScore(e) {
 
@@ -8,6 +9,5 @@ function submitScore(e) {
 }
 
 function showScore () {
-    var scoreLog = window.getItem("scoreLog");
-    scoreInput.textContent = scoreLog;
+
 }

@@ -13,26 +13,23 @@
 
 <body>
     <header>
-    <nav><a href="homescreen.html"><i class="fas fa-home"></i></a></nav>
+        <nav><a href="homescreen.html"><i class="fas fa-home"></i></a></nav>
     </header>
 
-<main>
-    <section class="user-input-card">
-        <h2 placeholder="user-score" id="user-score">Your Score</h2>
-        <form>
-        <input placeholder="Your Name"/>
-        <button class="submit">Submit</button>
-        <form>
- </section>
-        <script>// Check browser support
-            if (typeof (Storage) !== "undefined") {
-                // Retrieve
-                document.getElementById("scoreLog").innerHTML = localStorage.getItem("scoreLog");
-            } else {
-                document.getElementById("scoreLog").innerHTML = "Browser does not support Web Storage.";
-            }</script>
+    <main>
+        <section class="user-input-card">
+            <div class="score-display">
+                <h2>Your Score:</h2>
+                <h2 id="scoreLog">Score</h2>
+            </div>
+            <form>
+                <input placeholder="Your Name" />
+                <button class="submit">Submit</button>
+                <form>
+        </section>
 
-   </main>
+        <script src="./assets/js/score-js.js"></script>
+    </main>
 </body>
 
 </html>
