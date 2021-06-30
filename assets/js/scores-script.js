@@ -51,9 +51,13 @@ function showResponse(e) {
 
             $("#enter-leader-board").removeClass("hide")
             $("#enter-leader-board").addClass("show")
-            leaderBoardBtn.addEventListener("click", function () {
-                $(".score-card").addClass("hide")
-                $(".my-score-form").addClass("hide")
+            leaderBoardBtn.addEventListener("click", function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(".score-card").addClass("hide");
+               // $(".my-score-form").addClass("hide");
+                $(".leader-board").removeClass("hide");
+                $(".leader-board").addClass("show");
             })
 
         }
@@ -69,11 +73,11 @@ function showResponse(e) {
 
 }
 
-function hideScoreCardFn() {
-    console.log("entered")
+// function hideScoreCardFn() {
+//     console.log("entered")
 
-    $(".score-card").addClass("hide")
-    $(".my-score-form").addClass("hide")
+//     $(".score-card").addClass("hide")
+//     $(".my-score-form").addClass("hide")
 
-    showBoard();
-}
+//     showBoard();
+// }
