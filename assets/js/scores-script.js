@@ -3,7 +3,7 @@ var setScoreEl = document.querySelector("#scoreLog");
 var nameInput = document.querySelector("#name");
 var submitEl = document.querySelector("#submit");
 var hideScoreCard = document.querySelector(".score-card")
-var leaderBoardBtn = document.querySelector("#leader-board-enter")
+var leaderBoardBtn = document.querySelector("#enter-leader-board")
 var leader = document.querySelector("#name")
 
 //var submissionResponseEl = document.querySelector("#response");
@@ -47,13 +47,13 @@ function showResponse(e) {
             $(".score-card").css("padding-bottom", "6px")
             var response = userInput + " is a contender!";
             document.querySelector("#response").textContent = response.toUpperCase()
-            $(".score-card").removeClass("show")
-            $(".score-card").addClass("hide")
-            $("#leader-board-enter").removeClass("hide")
-            $("#leader-board-enter").addClass("show")
+            // $(".score-card").removeClass("show")
+            //  $(".score-card").addClass("hide")
+             $("#enter-leader-board").removeClass("hide")
+             $("#enter-leader-board").addClass("show")
             //var leaderBoardCard = document.querySelector("#leader-board-enter");
-            leaderBoardBtn.removeAttribute("class", "hide");
-            leaderBoardBtn.setAttribute("class", "show");
+           // leaderBoardBtn.removeAttribute("class", "hide");
+           // leaderBoardBtn.setAttribute("class", "show");
         }
         else {
             document.querySelector("#response").textContent = "You are not a contender!";
@@ -62,14 +62,26 @@ function showResponse(e) {
     else {
         document.querySelector("#response").textContent = "You Must Enter A Name!"
     }
-}
-
-submitEl.addEventListener("click", showResponse);
 
 leaderBoardBtn.addEventListener("click", hideScoreCardFn)
 
+}
+
+submitEl.addEventListener("click", showResponse);
+//hideScoreCard();
+
 function hideScoreCardFn() {
-    hideScoreCard.setAttribute(".hide");
+    console.log("entered")
+    //$(".score-card").removeClass("show")
+    $(".score-card").addClass("hide")
+  // hideScoreCard.setAttribute(".hide");
+  //  $(".score-card").addClass("hide")
+    //$("#leader-board-enter").removeClass("hide")
+  // $("#leader-board-enter").addClass("show")
+   // var leaderBoardCard = document.querySelector("#leader-board-enter");
+   // leaderBoardBtn.removeAttribute("class", "hide");
+  //  leaderBoardBtn.setAttribute("class", "show");
+  showBoard();
 }
 
 function showBoard() {
