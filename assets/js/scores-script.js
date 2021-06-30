@@ -7,6 +7,7 @@ var submissionResponseEl = document.querySelector("#response");
 // setGameTypeEl = localStorage.getItem("gameType");
 var score = JSON.parse(localStorage.getItem("scoreLog"))
 var gameType = JSON.parse(localStorage.getItem("gameType"));
+var userInput = ""
 
 //console.log("gameType = " + localStorage.getItem("gameType"))
 //console.log(gameType);
@@ -15,7 +16,7 @@ setScore()
 
 function setScore() {
 if (gameType) setScoreEl.textContent = parseInt(score, 10)/100;
-else if (!gameType) setScoreEl.textContent = score.toFixed(2);
+else if (!gameType) setScoreEl.textContent = score;
 else alert("problem setting score");
 }
 
@@ -31,8 +32,15 @@ function setGameType() {
 
 function showResponse(e) {
 
-    var myString = nameInput.value;
-    ms2 = myString.toUpperCase();
+    var correctInput = false;
+
+    do {
+    if (nameInput.value != "") {
+     correctInput = true;
+     userInput = nameInput.value;
+    }
+    else alert("Must Enter Text")
+    }while (correctInput)
 
     e.preventDefault();
     console.log(ms2)

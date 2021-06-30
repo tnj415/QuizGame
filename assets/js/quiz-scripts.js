@@ -89,6 +89,15 @@ untimedTestChoice.addEventListener("click", function () {
 
 //results.addEventListener("click", showResults)
 // beginGame.addEventListener("click", beginQuiz);
+function nxtBtnFunction () {
+
+        console.log("Entered event Listener")
+        console.log("1currQ = " + currQ);
+        currQ++;
+        console.log("2currQ = " + currQ);
+        setNextQuestion(currQ);
+    
+}
 
 function timerFunction() {
 
@@ -164,13 +173,15 @@ function beginQuiz() {
 function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
+    
     if (currQ < questions.length) showQuestion(currQ);
-    else showResults();
+    //else showResults();
 
     opA.addEventListener("click", evaluateAns);
     opB.addEventListener("click", evaluateAns);
     opC.addEventListener("click", evaluateAns);
     opD.addEventListener("click", evaluateAns);
+    nxtBtn.removeEventListener("click", nxtBtnFunction);
 
 }
 
@@ -203,12 +214,11 @@ function showQuestion(question) {
     // console.log(questions[0].options[1].correct)
     // console.log(questions[0].options[2].correct)
     // console.log(questions[0].options[3].correct)
-console.log("1currQ = " + currQ);
-    currQ++;
-    console.log("2currQ = " + currQ);
+
 }
 
 function evaluateAns(e) {
+    nxtBtn.removeEventListener("click", function(){});
     //console.log(questions)
     var lastQ = false;
     console.log("questions.length = " + questions.length)
@@ -253,7 +263,9 @@ function evaluateAns(e) {
     else {
         if (e.target.dataset.correct === "false" && quizCompleted === false) {
             timer -= 1000;
+            currQ++;
         }
+        else currQ++;
     }
 
     if (!lastQ) {
@@ -267,11 +279,7 @@ function evaluateAns(e) {
             // $(".op-btn").hover(function () {
             //     $(this).css("cursor", "default")
             // });
-
-            nxtBtn.addEventListener("click", function () {
-                console.log("Entered event Listener")
-                setNextQuestion(currQ);
-            });
+         nxtBtn.addEventListener("click", nxtBtnFunction);
         }
     }
     if (lastQ) {
@@ -284,13 +292,16 @@ function evaluateAns(e) {
 
         results.addEventListener("click", function () {
 
+
             window.location = "scores.html";
         })
     }
 }
 
 function reset() {
-    
+
+
+
     if (nxtBtn.classList.contains("show")) {
         nxtBtn.removeAttribute("class", "show");
         nxtBtn.setAttribute("class", "hide");
