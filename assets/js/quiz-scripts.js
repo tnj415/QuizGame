@@ -209,20 +209,20 @@ function evaluateAns(e) {
                 timerEl.classList.add("correctT-effects")
             }
         }
-    
+    }
     if (!lastQ) {
-console.log("Entered line 222")
+        console.log("Entered line 222")
         if (timedTest) setNextQuestion();
         else {
             opA.removeEventListener("click", evaluateAns);
             opB.removeEventListener("click", evaluateAns);
             opC.removeEventListener("click", evaluateAns);
             opD.removeEventListener("click", evaluateAns);
-            nxtBtn.addEventListener("click", function() {
+            nxtBtn.addEventListener("click", function () {
                 console.log("Entered event Listener")
                 reset();
                 setNextQuestion();
-                });
+            });
             //$(".quiz-container").css("background-color", "white")
         }
     }
@@ -255,13 +255,13 @@ function reset() {
         nxtBtn.setAttribute("class", "hide");
     }
     opBtn.forEach((el) => {
-
-        if (document.querySelector("#incorrect-ans"))
+console.log("el.id = " + el.id)
+        if (el.id === "#incorrect-ans")
             el.removeAttribute("id", "incorrect-ans");
 
-        else if (document.querySelector("#correct-ans"))
-            el.removeAttribute("id", "incorrect-ans");
-        else alert("multiple tags dont have appropriate IDs line 276")
+        else if (el.id === "#correct-ans")
+            el.removeAttribute("id", "correct-ans");
+        else alert("multiple tags dont have appropriate IDs line 264")
     })
 
     if (timerEl.classList.contains("incorrectT-effect")) {
