@@ -32,17 +32,18 @@
 
                 <h3 id="response"></h3>
                 <button class="hide" id="leader-board-enter">Lets see how you stack up!</button>
-
             </form>
 
 
         </section>
-        <section class="hide" id="leader-board">
+        <section class="leader-board hide">
             <h2>Leader Board</h2>
             <form>
                 <label for="board-info">Join the Board</label>
                 <input type="text" placeholder="text" name="name" id="score" />
             </form>
+            <p>Member Count: <span id="member-count">0</span></p>
+            <ul id="member-list"></ul>
         </section>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

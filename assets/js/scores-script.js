@@ -4,6 +4,7 @@ var nameInput = document.querySelector("#name");
 var submitEl = document.querySelector("#submit");
 var hideScoreCard = document.querySelector(".score-card")
 var leaderBoardBtn = document.querySelector("#leader-board-enter")
+var leader = document.querySelector("#name")
 
 //var submissionResponseEl = document.querySelector("#response");
 // document.getElementById("scoreLog").innerHTML = localStorage.getItem("scoreLog");
@@ -12,6 +13,7 @@ var score = JSON.parse(localStorage.getItem("scoreLog"))
 var gameType = JSON.parse(localStorage.getItem("gameType"));
 var userInput = "";
 
+var members = [];
 //console.log("gameType = " + localStorage.getItem("gameType"))
 //console.log(gameType);
 setGameType()
@@ -45,24 +47,67 @@ function showResponse(e) {
             $(".score-card").css("padding-bottom", "6px")
             var response = userInput + " is a contender!";
             document.querySelector("#response").textContent = response.toUpperCase()
-             $("#leader-board-enter").removeClass(".hide")
-             $("#leader-board-enter").addClass(".show")
-             //var leaderBoardCard = document.querySelector("#leader-board-enter");
-             leaderBoardBtn.removeAttribute("class", "hide");
-             leaderBoardBtn.setAttribute("class", "show");
-            }
+            $(".score-card").removeClass("show")
+            $(".score-card").addClass("hide")
+            $("#leader-board-enter").removeClass("hide")
+            $("#leader-board-enter").addClass("show")
+            //var leaderBoardCard = document.querySelector("#leader-board-enter");
+            leaderBoardBtn.removeAttribute("class", "hide");
+            leaderBoardBtn.setAttribute("class", "show");
+        }
         else {
             document.querySelector("#response").textContent = "You are not a contender!";
         }
     }
     else {
-        document.querySelector("#response").textContent = "You Must Enter A Name!"}
+        document.querySelector("#response").textContent = "You Must Enter A Name!"
+    }
 }
 
 submitEl.addEventListener("click", showResponse);
 
 leaderBoardBtn.addEventListener("click", hideScoreCardFn)
 
-function hideScoreCardFn (){
+function hideScoreCardFn() {
     hideScoreCard.setAttribute(".hide");
 }
+
+function showBoard() {
+
+    leader.innerHTML = "";
+
+    for (var i = 0; i < members.length; i++) {
+
+        var member = members[i];
+
+        var li = document.createElement("li");
+        li.textContent = member;
+        li.setAttribute("rank", i);
+
+
+    }
+}
+function leaderBoardLog() {
+
+    var storedBoard = ["name", 0]
+
+    if (storedBoard != null)
+        board = storedBoard;
+
+    showBoard();
+}
+
+function storeLeaders() {
+    localStorage.setItem("members", JSON.stringify(members));
+}
+
+// var memberInfo = memberInput.value.trim();
+// if (memberInfo ==="")
+// return;
+
+// members.push(memberName);
+// memberInput.value = "";
+
+// storeMembers();
+// leaderBoardLog();
+// });

@@ -41,7 +41,7 @@ main {
     justify-content: center;
 }
 
-.score-card{
+.score-card, .leader-board, label{
     width: 30vw;
     padding: 20px;
     padding-bottom: 50px;
@@ -54,7 +54,7 @@ flex-direction: column;
     justify-content: center;
     
 }
-  .score-display {
+  .score-display, form {
     
     display: flex;
     flex-wrap: wrap;
