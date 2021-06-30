@@ -7,7 +7,7 @@ var submissionResponseEl = document.querySelector("#response");
 // setGameTypeEl = localStorage.getItem("gameType");
 var score = JSON.parse(localStorage.getItem("scoreLog"))
 var gameType = JSON.parse(localStorage.getItem("gameType"));
-var userInput = ""
+var userInput = "";
 
 //console.log("gameType = " + localStorage.getItem("gameType"))
 //console.log(gameType);
@@ -38,11 +38,12 @@ function showResponse(e) {
     if (nameInput.value != "") {
      correctInput = true;
      userInput = nameInput.value;
+     e.preventDefault();
     }
     else alert("Must Enter Text")
     }while (correctInput)
 
-    e.preventDefault();
+    
     console.log(ms2)
 if (localStorage.hasOwnProperty("scoreLog")) {
     $(".score-card").css("padding-bottom", "6px")
