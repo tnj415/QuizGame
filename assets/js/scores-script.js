@@ -2,28 +2,23 @@ var setGameTypeEl = document.querySelector(".gameType");
 var setScoreEl = document.querySelector("#scoreLog");
 var nameInput = document.querySelector("#name");
 var submitEl = document.querySelector("#submit");
-var hideScoreCard = document.querySelector(".score-card")
-var leaderBoardBtn = document.querySelector("#enter-leader-board")
-var leader = document.querySelector("#name")
+var hideScoreCard = document.querySelector(".score-card");
+var leaderBoardBtn = document.querySelector("#enter-leader-board");
+var leader = document.querySelector("#name");
 
 //var submissionResponseEl = document.querySelector("#response");
 // document.getElementById("scoreLog").innerHTML = localStorage.getItem("scoreLog");
 // setGameTypeEl = localStorage.getItem("gameType");
-var score = JSON.parse(localStorage.getItem("scoreLog"))
+var score = JSON.parse(localStorage.getItem("scoreLog"));
 var gameType = JSON.parse(localStorage.getItem("gameType"));
 var userInput = "";
 
-var members = [];
-//console.log("gameType = " + localStorage.getItem("gameType"))
-//console.log(gameType);
-setGameType()
-setScore()
+submitEl.addEventListener("click", showResponse);
 
-function setScore() {
-    if (gameType) setScoreEl.textContent = parseInt(score, 10) / 100;
-    else if (!gameType) setScoreEl.textContent = score;
-    else alert("problem setting score");
-}
+var members = [];
+
+setGameType();
+setScore();
 
 function setGameType() {
 
@@ -35,6 +30,12 @@ function setGameType() {
     else alert("problem setting Game Type");
 }
 
+function setScore() {
+    if (gameType) setScoreEl.textContent = parseInt(score, 10) / 100;
+    else if (!gameType) setScoreEl.textContent = score;
+    else alert("problem setting score");
+}
+
 function showResponse(e) {
     e.preventDefault();
 
@@ -44,16 +45,17 @@ function showResponse(e) {
         var userInput = nameInput.value;
 
         if (localStorage.hasOwnProperty("scoreLog")) {
-            $(".score-card").css("padding-bottom", "6px")
+
             var response = userInput + " is a contender!";
             document.querySelector("#response").textContent = response.toUpperCase()
-            // $(".score-card").removeClass("show")
-            //  $(".score-card").addClass("hide")
-             $("#enter-leader-board").removeClass("hide")
-             $("#enter-leader-board").addClass("show")
-            //var leaderBoardCard = document.querySelector("#leader-board-enter");
-           // leaderBoardBtn.removeAttribute("class", "hide");
-           // leaderBoardBtn.setAttribute("class", "show");
+
+            $("#enter-leader-board").removeClass("hide")
+            $("#enter-leader-board").addClass("show")
+            leaderBoardBtn.addEventListener("click", function () {
+                $(".score-card").addClass("hide")
+                $(".my-score-form").addClass("hide")
+            })
+
         }
         else {
             document.querySelector("#response").textContent = "You are not a contender!";
@@ -63,63 +65,15 @@ function showResponse(e) {
         document.querySelector("#response").textContent = "You Must Enter A Name!"
     }
 
-leaderBoardBtn.addEventListener("click", hideScoreCardFn)
+
 
 }
-
-submitEl.addEventListener("click", showResponse);
-//hideScoreCard();
 
 function hideScoreCardFn() {
     console.log("entered")
-    //$(".score-card").removeClass("show")
+
     $(".score-card").addClass("hide")
-  // hideScoreCard.setAttribute(".hide");
-  //  $(".score-card").addClass("hide")
-    //$("#leader-board-enter").removeClass("hide")
-  // $("#leader-board-enter").addClass("show")
-   // var leaderBoardCard = document.querySelector("#leader-board-enter");
-   // leaderBoardBtn.removeAttribute("class", "hide");
-  //  leaderBoardBtn.setAttribute("class", "show");
-  showBoard();
-}
-
-function showBoard() {
-
-    leader.innerHTML = "";
-
-    for (var i = 0; i < members.length; i++) {
-
-        var member = members[i];
-
-        var li = document.createElement("li");
-        li.textContent = member;
-        li.setAttribute("rank", i);
-
-
-    }
-}
-function leaderBoardLog() {
-
-    var storedBoard = ["name", 0]
-
-    if (storedBoard != null)
-        board = storedBoard;
+    $(".my-score-form").addClass("hide")
 
     showBoard();
 }
-
-function storeLeaders() {
-    localStorage.setItem("members", JSON.stringify(members));
-}
-
-// var memberInfo = memberInput.value.trim();
-// if (memberInfo ==="")
-// return;
-
-// members.push(memberName);
-// memberInput.value = "";
-
-// storeMembers();
-// leaderBoardLog();
-// });
