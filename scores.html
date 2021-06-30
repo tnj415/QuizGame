@@ -31,18 +31,18 @@
                 <button id="submit">Submit</button>
 
                 <h3 id="response"></h3>
-                <button class="leader-board-enter hide">Lets see how you stack up!</button>
+                <button class="hide" id="leader-board-enter">Lets see how you stack up!</button>
 
             </form>
-          
+
 
         </section>
-        <section class="leader-board hide">
+        <section class="hide" id="leader-board">
             <h2>Leader Board</h2>
-            <article class="board-content" id="1place">1st Place</article>
-            <article class="board-content" id="2place">2nd Place</article>
-            <article class="board-content" id="3place">3rd Place</article>
-
+            <form>
+                <label for="board-info">Join the Board</label>
+                <input type="text" placeholder="text" name="name" id="score" />
+            </form>
         </section>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
