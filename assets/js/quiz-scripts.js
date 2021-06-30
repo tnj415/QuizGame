@@ -23,7 +23,6 @@ var correctLog = null;
 var quizCompleted = false;
 var enterOnce = true;
 
-
 var questions = [
     {
         question: "1st Q?",
@@ -69,15 +68,12 @@ var questions = [
 // [opA, opB, opC, opD].forEach((e) => {
 //     e.addEventListener("click", evaluateAns)
 // });
-opA.addEventListener("click", evaluateAns);
-opB.addEventListener("click", evaluateAns);
-opC.addEventListener("click", evaluateAns);
-opD.addEventListener("click", evaluateAns);
+// opA.addEventListener("click", evaluateAns);
+// opB.addEventListener("click", evaluateAns);
+// opC.addEventListener("click", evaluateAns);
+// opD.addEventListener("click", evaluateAns);
 
-nxtBtn.addEventListener("click", function () {
-    console.log("Entered event Listener")
-    setNextQuestion();
-});
+
 
 timedTestChoice.addEventListener("click", function () {
     timedTest = true;
@@ -168,10 +164,23 @@ function beginQuiz() {
 function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
-    if (currQ < questions.length) showQuestion();
+    if (currQ < questions.length) showQuestion(currQ);
+    else showResults();
+
+    opA.addEventListener("click", evaluateAns);
+    opB.addEventListener("click", evaluateAns);
+    opC.addEventListener("click", evaluateAns);
+    opD.addEventListener("click", evaluateAns);
+
 }
 
 function showQuestion(question) {
+
+    // [opA, opB, opC, opD].forEach((e) => {
+    //     e.addEventListener("click", evaluateAns)
+    // });
+
+
 
     //   console.log(questions) //should print the whole questions array
     //   console.log(questions[0]) //this should be the first element of that array... which is an object.
@@ -194,11 +203,16 @@ function showQuestion(question) {
     // console.log(questions[0].options[1].correct)
     // console.log(questions[0].options[2].correct)
     // console.log(questions[0].options[3].correct)
+console.log("1currQ = " + currQ);
+    currQ++;
+    console.log("2currQ = " + currQ);
 }
 
 function evaluateAns(e) {
     //console.log(questions)
     var lastQ = false;
+    console.log("questions.length = " + questions.length)
+    console.log("currQ = " + currQ)
     if (currQ === questions.length - 1) lastQ = true;
 
     if (!timedTest && quizCompleted === false) {
@@ -208,28 +222,30 @@ function evaluateAns(e) {
         nxtBtn.setAttribute("class", "show");
 
         if (e.target.dataset.correct === "true") {
-            $("#root").css("background-color", "green")
+            // $("#root").css("background-color", "green")
             opBtn.forEach(el => {
                 el.setAttribute("id", "incorrect-ans");
-                el.removeEventListener("click", evaluateAns());
+                el.removeEventListener("click", evaluateAns);
             });
             e.target.removeAttribute("id", "incorrect-ans");
             e.target.setAttribute("id", "correct-ans");
-            e.target.removeEventListener("click", evaluateAns());
+            e.target.removeEventListener("click", evaluateAns);
+            console.log("aC log = " + correctLog)
             correctLog++;
+            console.log("bC log = " + correctLog)
 
         }
         else {
-            $("#root").css("background-color", "red")
+            //$("#root").css("background-color", "red")
             opBtn.forEach((el) => {
                 if (el.dataset.correct === "false") {
 
                     el.setAttribute("id", "incorrect-ans");
-                    el.removeEventListener("click", evaluateAns());
+                    el.removeEventListener("click", evaluateAns);
                 }
                 else {
                     el.setAttribute("id", "correct-ans");
-                    el.removeEventListener("click", evaluateAns());
+                    el.removeEventListener("click", evaluateAns);
                 }
             })
         }
@@ -240,20 +256,24 @@ function evaluateAns(e) {
         }
     }
 
-    // if (!lastQ) {
-    //     console.log("Entered line 222")
-    //     if (timedTest) setNextQuestion();
-    //     else {
-    //         opA.removeEventListener("click", evaluateAns);
-    //         opB.removeEventListener("click", evaluateAns);
-    //         opC.removeEventListener("click", evaluateAns);
-    //         opD.removeEventListener("click", evaluateAns);
+    if (!lastQ) {
+        // console.log("Entered line 222")
+        if (timedTest) setNextQuestion();
+        else {
+            opA.removeEventListener("click", evaluateAns);
+            opB.removeEventListener("click", evaluateAns);
+            opC.removeEventListener("click", evaluateAns);
+            opD.removeEventListener("click", evaluateAns);
+            // $(".op-btn").hover(function () {
+            //     $(this).css("cursor", "default")
+            // });
 
-    $(".op-btn").hover(function () {
-        $(this).css("cursor", "default")
-    });
-    //}
-    //}
+            nxtBtn.addEventListener("click", function () {
+                console.log("Entered event Listener")
+                setNextQuestion(currQ);
+            });
+        }
+    }
     if (lastQ) {
         showResults()
 
@@ -270,25 +290,25 @@ function evaluateAns(e) {
 }
 
 function reset() {
-    // currQ++;
+    
     if (nxtBtn.classList.contains("show")) {
         nxtBtn.removeAttribute("class", "show");
         nxtBtn.setAttribute("class", "hide");
     }
-    // var i = 0;
+    var i = 0;
     opBtn.forEach((e) => {
-        // console.log(i + " el.id = " + e.id)
-        if (e.id === "incorrect-ans")
+        console.log(i + " el.id = " + e.id)
+        if (document.querySelector("#incorrect-ans"))
             e.removeAttribute("id", "incorrect-ans");
-        else if (e.id === "correct-ans")
+        else if (document.querySelector("#correct-ans"))
             e.removeAttribute("id", "correct-ans");
-        else alert("multiple tags dont have appropriate IDs line 236")
+        //else alert("multiple tags dont have appropriate IDs line 236")
         // i++;
     })
 
-    if (timerEl.classList.contains("incorrectT-effect"))
-        timerEl.classList.remove("incorrectT-effect");
-    else if (timerEl.classList.contains("correctT-effect"))
-        timerEl.classList.remove("correctT-effect");
-    else alert("Error in timer classlist loop line ")
+    // if (timerEl.classList.contains("incorrectT-effect"))
+    //     timerEl.classList.remove("incorrectT-effect");
+    // else if (timerEl.classList.contains("correctT-effect"))
+    //     timerEl.classList.remove("correctT-effect");
+    // else alert("Error in timer classlist loop line 307")
 }
