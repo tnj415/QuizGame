@@ -1,8 +1,7 @@
 var quizContainer = document.querySelector(".quiz-container");
 var preScreen = document.querySelector(".pre-screen");
 var timedTestChoice = document.querySelector(".timed-test");
-var slowTestChoice = document.querySelector(".slow-test");
-// var beginGame = document.querySelector(".begin");
+var untimedTestChoice = document.querySelector(".slow-test");
 var results = document.querySelector("#results");
 var nxtBtn = document.querySelector("#nxt-btn")
 var opBtn = document.querySelectorAll(".op-btn");
@@ -15,30 +14,7 @@ var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
 var scoreLog = localStorage.getItem("scoreLog");
 var gameType = localStorage.getItem("gameType")
-//window.localStorage.clear();
 localStorage.removeItem("scoreLog");
-
-
-opA.addEventListener("click", evaluateAns);
-opB.addEventListener("click", evaluateAns);
-opC.addEventListener("click", evaluateAns);
-opD.addEventListener("click", evaluateAns);
-
-timedTestChoice.addEventListener("click", function () {
-    timedTest = true;
-    //console.log(timedTest);
-    beginQuiz()
-})
-
-slowTestChoice.addEventListener("click", function () {
-    timedTest = false;
-    //console.log(timedTest);
-    beginQuiz()
-})
-
-//results.addEventListener("click", showResults)
-
-// beginGame.addEventListener("click", beginQuiz);
 
 var timedTest = false;
 var timer = 6000;
@@ -46,6 +22,73 @@ var currQ = 0;
 var correctLog = null;
 var quizCompleted = false;
 var enterOnce = true;
+
+[opA, opB, opC, opD].forEach(function (e) {
+    e.addEventListener("click", evaluateAns())
+});
+
+nxtBtn.addEventListener("click", function () {
+    console.log("Entered event Listener")
+    setNextQuestion(currQ);
+});
+
+timedTestChoice.addEventListener("click", function () {
+    timedTest = true;
+    //console.log(timedTest);
+    beginQuiz()
+})
+
+untimedTestChoice.addEventListener("click", function () {
+    timedTest = false;
+    //console.log(timedTest);
+    beginQuiz()
+})
+
+//results.addEventListener("click", showResults)
+// beginGame.addEventListener("click", beginQuiz);
+
+
+var questions = [
+    {
+        question: "1st Q?",
+        options: [
+            { text: "undefined", correct: false },
+            { text: "0", correct: false },
+            { text: "null", correct: true },
+            { text: "not defined", correct: false },
+        ]
+    },
+
+    {
+        question: "2?",
+        options: [
+            { text: "Abstraction is a technique to define different methods of same type", correct: false },
+            { text: "Abstraction is the ability of an object to take on many forms", correct: false },
+            { text: "It refers to the ability to make class abstract in OOP", correct: true },
+            { text: "None of the above", correct: false },
+        ]
+    },
+
+    {
+        question: "3?",
+        options: [
+            { text: "maybe", correct: false },
+            { text: "maybe not", correct: false },
+            { text: "maybe", correct: true },
+            { text: "maybe not", correct: false },
+        ]
+    },
+
+    {
+        question: "LAST QUESTION?",
+        options: [
+            { text: "ert", correct: false },
+            { text: "0ert", correct: false },
+            { text: "ewrt", correct: true },
+            { text: "not ewrt", correct: false },
+        ]
+    }
+]
 
 function timerFunction() {
 
@@ -103,17 +146,17 @@ function showResults() {
 }
 
 function beginQuiz() {
-    console.log("currQ = " + currQ)
-    if (timedTest === true) {
-        timerTitleEl.removeAttribute("class", "hide")
-        timerTitleEl.setAttribute("class", "show")
-        timerEl.removeAttribute("class", "hide")
-        timerEl.setAttribute("class", "show")
-        timerFunction();
-    }
+    //console.log("currQ = " + currQ)
     preScreen.setAttribute("class", "hide");
     quizContainer.setAttribute("class", "show");
 
+    if (timedTest === true) {
+        timerTitleEl.removeAttribute("class", "hide");
+        timerTitleEl.setAttribute("class", "show");
+        timerEl.removeAttribute("class", "hide");
+        timerEl.setAttribute("class", "show");
+        timerFunction();
+    }
 
     setNextQuestion(currQ);
 }
@@ -121,20 +164,7 @@ function beginQuiz() {
 function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
-
-    //might need questions.length - 1
-    //and have a different condition for last question
-    // if (timedTest === true && currQ < questions.length) {showQuestion(currQ);}
-    if (currQ < questions.length) { showQuestion(currQ); }
-    //else { showResults() }
-
-    opA.addEventListener("click", evaluateAns);
-    opB.addEventListener("click", evaluateAns);
-    opC.addEventListener("click", evaluateAns);
-    opD.addEventListener("click", evaluateAns);
-
-    enterOnce = true;
-
+    if (currQ < questions.length) showQuestion(currQ);
 }
 
 function showQuestion(question) {
@@ -160,14 +190,12 @@ function showQuestion(question) {
     // console.log(questions[0].options[1].correct)
     // console.log(questions[0].options[2].correct)
     // console.log(questions[0].options[3].correct)
-
 }
 
-function evaluateAns(e) {
+function evaluateAns() {
 
     var lastQ = false;
-
-    if (currQ === questions.length - 1) lastQ = true;
+    if (currQ === (questions.length - 1)) lastQ = true;
 
     if (!timedTest && quizCompleted === false) {
         // console.log(e.target)
@@ -176,58 +204,53 @@ function evaluateAns(e) {
         nxtBtn.setAttribute("class", "show");
 
         if (e.target.dataset.correct === "true") {
-            opBtn.forEach(el => el.setAttribute("id", "incorrect-ans"));
+            $("#root").css("background-color", "green")
+            opBtn.forEach(el => {
+                el.setAttribute("id", "incorrect-ans");
+                el.removeEventListener("click", evaluateAns());
+            });
             e.target.removeAttribute("id", "incorrect-ans");
             e.target.setAttribute("id", "correct-ans");
+            e.target.removeEventListener("click", evaluateAns());
             correctLog++;
-            console.log("clog = " + correctLog);
+
         }
         else {
-            $('#root').addClass(".overlay").css("background-color", "rgba(251, 9, 9, 0.637)");
-            $(".overlay").css("transition", "cubic-bezier(1,1,0,0)");
-
+            $("#root").css("background-color", "red")
             opBtn.forEach((el) => {
-                if (el.dataset.correct === "false")
+                if (el.dataset.correct === "false") {
+
                     el.setAttribute("id", "incorrect-ans");
-                else
+                    el.removeEventListener("click", evaluateAns());
+                }
+                else {
                     el.setAttribute("id", "correct-ans");
+                    el.removeEventListener("click", evaluateAns());
+                }
             })
         }
-
     }
     else {
         if (e.target.dataset.correct === "false" && quizCompleted === false) {
-            console.log("should enter here on false ans selected")
-            console.log("timer = " + timer)
-            timerEl.classList.add("incorrectT-effect")
             timer -= 1000;
-            $(".question-card").css("background-color", "red")
-
-            //only happens for a split second
-            if (timerEl.classList.contains("incorrectT-effect")) {
-                timerEl.classList.remove("incorrectT-effect")
-                timerEl.classList.add("correctT-effects")
-            }
-        }
-    }
-    if (!lastQ) {
-        console.log("Entered line 222")
-        if (timedTest) setNextQuestion();
-        else {
-            opA.removeEventListener("click", evaluateAns);
-            opB.removeEventListener("click", evaluateAns);
-            opC.removeEventListener("click", evaluateAns);
-            opD.removeEventListener("click", evaluateAns);
-            nxtBtn.addEventListener("click", function () {
-                console.log("Entered event Listener")
-                reset();
-                setNextQuestion();
-            });
-            //$(".quiz-container").css("background-color", "white")
         }
     }
 
-    else {
+    // if (!lastQ) {
+    //     console.log("Entered line 222")
+    //     if (timedTest) setNextQuestion();
+    //     else {
+    //         opA.removeEventListener("click", evaluateAns);
+    //         opB.removeEventListener("click", evaluateAns);
+    //         opC.removeEventListener("click", evaluateAns);
+    //         opD.removeEventListener("click", evaluateAns);
+
+    $(".op-btn").hover(function () {
+        $(this).css("cursor", "default")
+    });
+    //}
+    //}
+    if (lastQ) {
         showResults()
 
         results.classList.remove("hide");
@@ -235,17 +258,11 @@ function evaluateAns(e) {
         nxtBtn.classList.remove("show");
         nxtBtn.classList.add("hide");
 
-        $(".op-btn").hover(function () {
-            $(this).css("border-color", "white");
-            $(this).css("cursor", "default")
-        });
-
         results.addEventListener("click", function () {
 
             window.location = "scores.html";
         })
     }
-
 }
 
 function reset() {
@@ -254,61 +271,20 @@ function reset() {
         nxtBtn.removeAttribute("class", "show");
         nxtBtn.setAttribute("class", "hide");
     }
-    opBtn.forEach((el) => {
-console.log("el.id = " + el.id)
-        if (el.id === "#incorrect-ans")
-            el.removeAttribute("id", "incorrect-ans");
-
-        else if (el.id === "#correct-ans")
-            el.removeAttribute("id", "correct-ans");
-        else alert("multiple tags dont have appropriate IDs line 264")
+    // var i = 0;
+    opBtn.forEach((e) => {
+        // console.log(i + " el.id = " + e.id)
+        if (e.id === "incorrect-ans")
+            e.removeAttribute("id", "incorrect-ans");
+        else if (e.id === "correct-ans")
+            e.removeAttribute("id", "correct-ans");
+        else alert("multiple tags dont have appropriate IDs line 236")
+        // i++;
     })
 
-    if (timerEl.classList.contains("incorrectT-effect")) {
+    if (timerEl.classList.contains("incorrectT-effect"))
         timerEl.classList.remove("incorrectT-effect");
-    }
-
-
+    else if (timerEl.classList.contains("correctT-effect"))
+        timerEl.classList.remove("correctT-effect");
+    else alert("Error in timer classlist loop line ")
 }
-
-var questions = [
-    {
-        question: "1st Q?",
-        options: [
-            { text: "undefined", correct: false },
-            { text: "0", correct: false },
-            { text: "null", correct: true },
-            { text: "not defined", correct: false },
-        ]
-    },
-
-    {
-        question: "2?",
-        options: [
-            { text: "Abstraction is a technique to define different methods of same type", correct: false },
-            { text: "Abstraction is the ability of an object to take on many forms", correct: false },
-            { text: "It refers to the ability to make class abstract in OOP", correct: true },
-            { text: "None of the above", correct: false },
-        ]
-    },
-
-    {
-        question: "3?",
-        options: [
-            { text: "maybe", correct: false },
-            { text: "maybe not", correct: false },
-            { text: "maybe", correct: true },
-            { text: "maybe not", correct: false },
-        ]
-    },
-
-    {
-        question: "LAST QUESTION?",
-        options: [
-            { text: "ert", correct: false },
-            { text: "0ert", correct: false },
-            { text: "ewrt", correct: true },
-            { text: "not ewrt", correct: false },
-        ]
-    }
-]
