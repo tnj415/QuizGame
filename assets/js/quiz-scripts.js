@@ -25,42 +25,42 @@ var enterOnce = true;
 
 var questions = [
     {
-        question: "1st Q?",
+        question: "HTML coding language is used to create:",
         options: [
-            { text: "undefined", correct: false },
-            { text: "0", correct: false },
-            { text: "null", correct: true },
-            { text: "not defined", correct: false },
+            { text: "web pages", correct: true },
+            { text: "Food", correct: false },
+            { text: "Files for computers", correct: false },
+            { text: "Pencils", correct: false },
         ]
     },
 
     {
-        question: "2?",
+        question: "Javascript",
         options: [
-            { text: "Abstraction is a technique to define different methods of same type", correct: false },
-            { text: "Abstraction is the ability of an object to take on many forms", correct: false },
-            { text: "It refers to the ability to make class abstract in OOP", correct: true },
+            { text: "Is a password used at coffee shops", correct: false },
+            { text: "A way to order coffee", correct: false },
+            { text: "Is a coding language", correct: true },
             { text: "None of the above", correct: false },
         ]
     },
 
     {
-        question: "3?",
+        question: "Coding is used for ",
         options: [
-            { text: "maybe", correct: false },
-            { text: "maybe not", correct: false },
-            { text: "maybe", correct: true },
-            { text: "maybe not", correct: false },
+            { text: "Furniture", correct: false },
+            { text: "Hardwood", correct: false },
+            { text: "Computers", correct: true },
+            { text: "None of the above", correct: false },
         ]
     },
 
     {
-        question: "LAST QUESTION?",
+        question: "People who write code are",
         options: [
-            { text: "ert", correct: false },
-            { text: "0ert", correct: false },
-            { text: "ewrt", correct: true },
-            { text: "not ewrt", correct: false },
+            { text: "Computer Programmers", correct: true },
+            { text: "Alphabet", correct: false },
+            { text: "Foodies", correct: false },
+            { text: "Oranges", correct: false },
         ]
     }
 ]
