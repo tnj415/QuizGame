@@ -23,32 +23,36 @@ var correctLog = null;
 var quizCompleted = false;
 var enterOnce = true;
 
-[opA, opB, opC, opD].forEach(function (e) {
-    e.addEventListener("click", evaluateAns())
-});
+// [opA, opB, opC, opD].forEach((e) => {
+//     e.addEventListener("click", evaluateAns)
+// });
+opA.addEventListener("click", evaluateAns);
+opB.addEventListener("click", evaluateAns);
+opC.addEventListener("click", evaluateAns);
+opD.addEventListener("click", evaluateAns);
 
 nxtBtn.addEventListener("click", function () {
     console.log("Entered event Listener")
-    setNextQuestion(currQ);
+    setNextQuestion();
 });
 
 timedTestChoice.addEventListener("click", function () {
     timedTest = true;
     //console.log(timedTest);
-    beginQuiz()
+    beginQuiz();
 })
 
 untimedTestChoice.addEventListener("click", function () {
     timedTest = false;
     //console.log(timedTest);
-    beginQuiz()
+    beginQuiz();
 })
 
 //results.addEventListener("click", showResults)
 // beginGame.addEventListener("click", beginQuiz);
 
 
-var questions = [
+const questions = [
     {
         question: "1st Q?",
         options: [
@@ -164,7 +168,7 @@ function beginQuiz() {
 function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
-    if (currQ < questions.length) showQuestion(currQ);
+    if (currQ < questions.length) showQuestion();
 }
 
 function showQuestion(question) {
@@ -192,10 +196,10 @@ function showQuestion(question) {
     // console.log(questions[0].options[3].correct)
 }
 
-function evaluateAns() {
-
+function evaluateAns(e) {
+    //console.log(questions)
     var lastQ = false;
-    if (currQ === (questions.length - 1)) lastQ = true;
+    if (currQ === questions.length - 1) lastQ = true;
 
     if (!timedTest && quizCompleted === false) {
         // console.log(e.target)
