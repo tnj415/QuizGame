@@ -23,34 +23,6 @@ var correctLog = null;
 var quizCompleted = false;
 var enterOnce = true;
 
-// [opA, opB, opC, opD].forEach((e) => {
-//     e.addEventListener("click", evaluateAns)
-// });
-opA.addEventListener("click", evaluateAns);
-opB.addEventListener("click", evaluateAns);
-opC.addEventListener("click", evaluateAns);
-opD.addEventListener("click", evaluateAns);
-
-nxtBtn.addEventListener("click", function () {
-    console.log("Entered event Listener")
-    setNextQuestion();
-});
-
-timedTestChoice.addEventListener("click", function () {
-    timedTest = true;
-    //console.log(timedTest);
-    beginQuiz();
-});
-
-untimedTestChoice.addEventListener("click", function () {
-    timedTest = false;
-    //console.log(timedTest);
-    beginQuiz();
-});
-
-//results.addEventListener("click", showResults)
-// beginGame.addEventListener("click", beginQuiz);
-
 
 var questions = [
     {
@@ -93,6 +65,34 @@ var questions = [
         ]
     }
 ]
+
+// [opA, opB, opC, opD].forEach((e) => {
+//     e.addEventListener("click", evaluateAns)
+// });
+opA.addEventListener("click", evaluateAns);
+opB.addEventListener("click", evaluateAns);
+opC.addEventListener("click", evaluateAns);
+opD.addEventListener("click", evaluateAns);
+
+nxtBtn.addEventListener("click", function () {
+    console.log("Entered event Listener")
+    setNextQuestion();
+});
+
+timedTestChoice.addEventListener("click", function () {
+    timedTest = true;
+    //console.log(timedTest);
+    beginQuiz();
+});
+
+untimedTestChoice.addEventListener("click", function () {
+    timedTest = false;
+    //console.log(timedTest);
+    beginQuiz();
+});
+
+//results.addEventListener("click", showResults)
+// beginGame.addEventListener("click", beginQuiz);
 
 function timerFunction() {
 
