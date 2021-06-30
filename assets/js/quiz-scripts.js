@@ -40,19 +40,19 @@ timedTestChoice.addEventListener("click", function () {
     timedTest = true;
     //console.log(timedTest);
     beginQuiz();
-})
+});
 
 untimedTestChoice.addEventListener("click", function () {
     timedTest = false;
     //console.log(timedTest);
     beginQuiz();
-})
+});
 
 //results.addEventListener("click", showResults)
 // beginGame.addEventListener("click", beginQuiz);
 
 
-const questions = [
+var questions = [
     {
         question: "1st Q?",
         options: [
