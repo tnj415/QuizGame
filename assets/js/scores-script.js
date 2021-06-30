@@ -53,7 +53,8 @@ function showResponse(e) {
             $("#enter-leader-board").addClass("show")
             leaderBoardBtn.addEventListener("click", function (event) {
                 event.preventDefault();
-                event.stopPropagation();
+                //event.stopPropagation();
+
                 $(".score-card").addClass("hide");
                // $(".my-score-form").addClass("hide");
                 $(".leader-board").removeClass("hide");
