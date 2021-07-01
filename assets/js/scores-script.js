@@ -28,11 +28,9 @@ function showResponse(e) {
 function setGameType() {
     if (gameType) {
         setGameTypeEl.textContent = "Game Type: Timed";
-
     }
     else if (!gameType) {
         setGameTypeEl.textContent = "Game Type: Un-Timed";
-
     }
     else alert("problem setting Game Type");
 }
@@ -47,7 +45,6 @@ function setScore() {
         setScoreEl.textContent = score;
     }
     else alert("problem setting score");
-
 }
 
 function enterLeaderBoard() {
@@ -56,11 +53,9 @@ function enterLeaderBoard() {
     $(".score-card").addClass("hide");
     $(".leader-board").removeClass("hide");
     $(".leader-board").addClass("show");
-
 }
 
 function setLeaderBoard() {
-
 
     var newScoreArr = {
         score: newScore,
@@ -69,10 +64,8 @@ function setLeaderBoard() {
 
     leaderBoardArr = JSON.parse(localStorage.getItem("storedBoardTimed")) || [];
     leaderBoardArr.push(newScoreArr);
-    //sortBoard();
-    console.log(leaderBoardArr)
+  
     leaderBoardArr.sort((a, b) => (a.score < b.score) ? 1 : -1)
-    console.log(leaderBoardArr)
     localStorage.setItem('storedBoardTimed', JSON.stringify(leaderBoardArr));
 
     showLeaderBoard();
@@ -80,13 +73,8 @@ function setLeaderBoard() {
 
 
 function showLeaderBoard() {
-
-    //console.log("from showLeaderBoard stobjt  = " + leaderBoardArr)
     leaderBoardArr.forEach((e, i) => {
-        //console.log("el = " + el)
-        //console.log("el.name el.score" + el.name + el.score)
-        console.log("i = " + i)
-        if (i < 10) { $("#member-list").append("<li>" + "" + e.name + ": " + e.score)}
+        if (i < 10) $("#member-list").append("<li>" + "" + e.name + ": " + e.score)
     })
 }
 
