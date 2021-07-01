@@ -306,8 +306,8 @@ function reset() {
         nxtBtn.removeAttribute("class", "show");
         nxtBtn.setAttribute("class", "hide");
     }
-    var i = 0;
-    opBtn.forEach((e) => {
+    //var i = 0;
+    opBtn.forEach((e, i) => {
         console.log(i + " el.id = " + e.id)
         if (document.querySelector("#incorrect-ans"))
             e.removeAttribute("id", "incorrect-ans");
