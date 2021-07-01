@@ -3,7 +3,7 @@ var setScoreEl = document.querySelector("#scoreLog");
 var memberEl = document.querySelector("#name");
 var submitEl = document.querySelector("#submit");
 var leaderBoardBtn = document.querySelector("#enter-leader-board");
-
+var userInput = "";
 var score = JSON.parse(localStorage.getItem("scoreLog"));
 var gameType = JSON.parse(localStorage.getItem("gameType"));
 var userInput = "";
@@ -50,29 +50,36 @@ function getUntimedLeaderBoard() {
 }
 
 function setLeaderBoard() {
-    setGameType();
-    setScore();
-
-    jpArrTimed.push(userInput);
-    jpArrTimed.push(parseInt(score, 10) / 100);
+    // setGameType();
+    // setScore();
+console.log("!!!userInput = " +userInput)
+console.log("!!!score = " + parseInt(score,10)/100)
+    //jpArrTimed.push(userInput);
+   //jpArrTimed.push(memberEl);
+   leaderBoardArrTimed.push([userInput, parseInt(score, 10) / 100]);
 
     if (localStorage.getItem("storedBoardTimed") !== null)
-        jpArrTimed = (JSON.parse(localStorage.getItem("storedBoardTimed")).split(' '));
+        jpArrTimed = (JSON.parse(localStorage.getItem("storedBoardTimed")));
     if (localStorage.getItem("storedBoardUntimed") !== null)
-        jpArrUntimed = (JSON.parse(localStorage.getItem("storedBoardUntimed")).split(' '));
+        jpArrUntimed = (JSON.parse(localStorage.getItem("storedBoardUntimed")));
     //     if (gameType)
     //     showTimedLeaderBoard();
     // else if (!gameType)
     console.log(jpArrTimed)
     showTimedLeaderBoard();
+    
     //else alert("ERROR: in setLeaderBoard if statement");
-
     // memberCountEl.textContent = memberListCount;
     // localStorage.setItem("storedBoardObj", storedBoard);
-
     // memberNameEl.textContent = memberName;
     // localStorage.setItem("storedBoardObj", storedBoard);
-    console.log(leaderBoardArrTimed)
+    console.log(leaderBoardArrTimed);
+    console.log(leaderBoardArrTimed);
+    console.log(leaderBoardArrTimed);
+    console.log(leaderBoardArrTimed);
+
+    localStorage.setItem('storedBoardTimed', JSON.stringify(leaderBoardArrTimed));
+
 }
 
 function showTimedLeaderBoard() {
@@ -80,17 +87,17 @@ function showTimedLeaderBoard() {
     console.log("jpArrTimed.length = " + jpArrTimed.length)
     for (var i = 0; i < jpArrTimed.length / 2; i += 2) {
         
-        console.table("leaderBoardArrTimed = " + leaderBoardArrTimed);
+        console.log("leaderBoardArrTimed = " + leaderBoardArrTimed);
         console.log("leaderBoardArrTimed[i] = " + leaderBoardArrTimed[i]);
-        
+       // console.log("jpa i+1" + jpArrTimed[i+1])
         leaderBoardArrTimed.push([jpArrTimed[i], jpArrTimed[i + 1]])
 
-        console.table("leaderBoardArrTimed = " + leaderBoardArrTimed);
+        console.log("leaderBoardArrTimed = " + leaderBoardArrTimed);
         console.log("leaderBoardArrTimed[i] = " + leaderBoardArrTimed[i]);
     }
 
     leaderBoardArrTimed.forEach((el, i) => {
-        $(".rank").append("<li>" + leaderBoardArrTimed[i][el] + " - " + leaderBoardArrTimed[i][el])
+        $("#member-list").append("<li>" + leaderBoardArrTimed[i])
         //memberListCount++
         // memberCountEl.textContent = leaderBoardArr.length;
         // memberNameEl.textContent = leaderBoardArr[i][el];
@@ -102,7 +109,7 @@ function showTimedLeaderBoard() {
 function showUntimedLeaderBoard() {
 
     for (var i = 0; i < jpArrUntimed.length / 2; i += 2) {
-        leaderBoardArrUntimed[i].push([jpArrUntimed[i], jpArrUntimed[i + 1]]);
+        leaderBoardArrUntimed.push([jpArrUntimed[i], jpArrUntimed[i + 1]]);
 
     }
 
@@ -119,8 +126,8 @@ function showUntimedLeaderBoard() {
 }
 
 function init() {
-    
-    
+    setGameType();
+    setScore();
 }
 
 function setGameType() {
@@ -139,7 +146,7 @@ function setScore() {
 function showResponse(e) {
     e.preventDefault();
     if (memberEl.value != "") {
-        var userInput = memberEl.value;
+        userInput = memberEl.value;
         //localStorage.setItem("memberNameStored", userInput)
         var response = userInput + " is a contender!";
         document.querySelector("#response").textContent = response.toUpperCase()

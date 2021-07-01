@@ -4,7 +4,7 @@
 }
 
 .show {
-    display: block;
+    display: flex;
 }
 
 .hide {
@@ -49,6 +49,7 @@ main {
     border: 4px solid black;
     /* border-radius: 20px; */
     background-color: white;
+
     text-align: center;
 
     flex-direction: column;
@@ -56,13 +57,18 @@ main {
 
 }
 
-.score-display {
+.score-display, .leader-board {
 
-    display: flex;
+    
     flex-wrap: wrap;
 
     justify-content: space-evenly;
 
+}
+
+#member-list li{
+    text-align: left;
+    padding-left: 10%;
 }
 
 input {
