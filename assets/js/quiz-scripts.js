@@ -65,30 +65,16 @@ var questions = [
     }
 ]
 
-// [opA, opB, opC, opD].forEach((e) => {
-//     e.addEventListener("click", evaluateAns)
-// });
-// opA.addEventListener("click", evaluateAns);
-// opB.addEventListener("click", evaluateAns);
-// opC.addEventListener("click", evaluateAns);
-// opD.addEventListener("click", evaluateAns);
-
-
-
 timedTestChoice.addEventListener("click", function () {
     timedTest = true;
-    //console.log(timedTest);
     beginQuiz();
 });
 
 untimedTestChoice.addEventListener("click", function () {
     timedTest = false;
-    //console.log(timedTest);
     beginQuiz();
 });
 
-//results.addEventListener("click", showResults)
-// beginGame.addEventListener("click", beginQuiz);
 function nxtBtnFunction () {
 
         console.log("Entered event Listener")
@@ -135,7 +121,6 @@ function timerFunction() {
 function showResults() {
 
     console.log("correctLog = " + correctLog);
-    // if (!localStorage.hasOwnProperty("scoreLog")) {
     if (!quizCompleted) {
         quizCompleted = true
         if (timedTest) {
@@ -149,13 +134,9 @@ function showResults() {
 
         localStorage.setItem("gameType", timedTest);
     }
-
-    // window.location = "scores.html";
-
 }
 
 function beginQuiz() {
-    //console.log("currQ = " + currQ)
     preScreen.setAttribute("class", "hide");
     quizContainer.setAttribute("class", "show");
 
@@ -166,33 +147,22 @@ function beginQuiz() {
         timerEl.setAttribute("class", "show");
         timerFunction();
     }
-
     setNextQuestion(currQ);
 }
 
 function setNextQuestion() {
 
     if (currQ > 0 && timedTest === false) reset();
-    
     if (currQ < questions.length) showQuestion(currQ);
-    //else showResults();
 
     opA.addEventListener("click", evaluateAns);
     opB.addEventListener("click", evaluateAns);
     opC.addEventListener("click", evaluateAns);
     opD.addEventListener("click", evaluateAns);
     nxtBtn.removeEventListener("click", nxtBtnFunction);
-
 }
 
 function showQuestion(question) {
-
-    // [opA, opB, opC, opD].forEach((e) => {
-    //     e.addEventListener("click", evaluateAns)
-    // });
-
-
-
     //   console.log(questions) //should print the whole questions array
     //   console.log(questions[0]) //this should be the first element of that array... which is an object.
     //   console.log(questions[0].question) //see how we're working our way through the array's objects?
@@ -214,12 +184,10 @@ function showQuestion(question) {
     // console.log(questions[0].options[1].correct)
     // console.log(questions[0].options[2].correct)
     // console.log(questions[0].options[3].correct)
-
 }
 
 function evaluateAns(e) {
     nxtBtn.removeEventListener("click", function(){});
-    //console.log(questions)
     var lastQ = false;
     console.log("questions.length = " + questions.length)
     console.log("currQ = " + currQ)
@@ -269,16 +237,13 @@ function evaluateAns(e) {
     }
 
     if (!lastQ) {
-        // console.log("Entered line 222")
         if (timedTest) setNextQuestion();
         else {
             opA.removeEventListener("click", evaluateAns);
             opB.removeEventListener("click", evaluateAns);
             opC.removeEventListener("click", evaluateAns);
             opD.removeEventListener("click", evaluateAns);
-            // $(".op-btn").hover(function () {
-            //     $(this).css("cursor", "default")
-            // });
+         
          nxtBtn.addEventListener("click", nxtBtnFunction);
         }
     }
@@ -292,34 +257,21 @@ function evaluateAns(e) {
 
         results.addEventListener("click", function () {
 
-
             window.location = "scores.html";
         })
     }
 }
 
 function reset() {
-
-
-
     if (nxtBtn.classList.contains("show")) {
         nxtBtn.removeAttribute("class", "show");
         nxtBtn.setAttribute("class", "hide");
     }
-    //var i = 0;
     opBtn.forEach((e, i) => {
         console.log(i + " el.id = " + e.id)
         if (document.querySelector("#incorrect-ans"))
             e.removeAttribute("id", "incorrect-ans");
         else if (document.querySelector("#correct-ans"))
             e.removeAttribute("id", "correct-ans");
-        //else alert("multiple tags dont have appropriate IDs line 236")
-        // i++;
     })
-
-    // if (timerEl.classList.contains("incorrectT-effect"))
-    //     timerEl.classList.remove("incorrectT-effect");
-    // else if (timerEl.classList.contains("correctT-effect"))
-    //     timerEl.classList.remove("correctT-effect");
-    // else alert("Error in timer classlist loop line 307")
 }
