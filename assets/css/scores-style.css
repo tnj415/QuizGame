@@ -18,8 +18,6 @@ body {
     background-position-x: center;
     background-size: 70%;
     background-color: white;
-
-
 }
 
 header {
@@ -34,7 +32,7 @@ header {
     color: grey !important;
 }
 
-main {
+main, .my-score-form {
 
     display: flex;
     flex-wrap: wrap;
@@ -47,23 +45,22 @@ main {
     padding: 20px;
     padding-bottom: 50px;
     border: 4px solid black;
-    /* border-radius: 20px; */
     background-color: white;
-
     text-align: center;
-
     flex-direction: column;
     justify-content: center;
 
 }
 
 .score-display, .leader-board {
-
-    
     flex-wrap: wrap;
-
     justify-content: space-evenly;
+}
 
+.same-line {
+    display: flex;
+    flex-direction: row;
+    
 }
 
 #member-list li{
@@ -84,12 +81,9 @@ input {
 }
 
 #submit:hover {
-
     background-color: grey;
     border: 2px solid grey;
 }
-
-
 
 #user-score {
     width: 80%;
@@ -99,7 +93,8 @@ input {
     font-size: 18px;
 }
 
-.leader-board-enter {
+#enter-leader-board {
+    
     background-color: black;
     border: 2px solid black;
     color: white;
@@ -107,7 +102,7 @@ input {
     font-weight: bold;
 }
 
-.leader-board-enter:hover {
+#enter-leader-board:hover {
     background-color: grey;
     border: 2px solid grey;
 }
