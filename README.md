@@ -13,7 +13,7 @@
 
 ## General Info
 * This is a website that offers two game modes and shows scores at the end
-* ![Image text](./pwSiteImg.PNG)
+* ![Image text](./assets/img/quizHomepage.PNG)
 
 ## Technologies
 * This website was created with HTML, CSS, and Javascript code on Microsoft Visual Studio Code.
