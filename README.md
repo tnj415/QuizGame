@@ -12,8 +12,12 @@
 8. [FAQs](#faqs)
 
 ## General Info
-* This is a website that offers two game modes and shows scores at the end
-* ![Image text](./assets/img/quizHomepage.PNG)
+* This is a website that offers a quiz with two game modes and shows scores at the end
+* ![Home Page](./assets/img/quizHomepage.PNG)
+* ![Quiz Information Page](./assets/img/quizInfo.PNG)
+* ![Timed Leader Board Page](./assets/img/leaderboard.PNG)
+* ![Untimed Leader Board Page](./assets/img/untimedLeaderboard.PNG)
+* ![Untimed Leader Board Page](./assets/img/untimedLeaderboard.PNG)
 
 ## Technologies
 * This website was created with HTML, CSS, and Javascript code on Microsoft Visual Studio Code.

@@ -5,6 +5,7 @@
 
 .show {
     display: flex;
+    flex-direction: column;
 }
 
 .hide {
@@ -32,7 +33,7 @@ header {
     color: grey !important;
 }
 
-main, .my-score-form {
+main {
 
     display: flex;
     flex-wrap: wrap;
@@ -41,7 +42,9 @@ main, .my-score-form {
 
 .score-card,
 .leader-board {
-    width: 30vw;
+
+    flex-direction: column;
+    width: fit-content;
     padding: 20px;
     padding-bottom: 50px;
     border: 4px solid black;
@@ -52,7 +55,16 @@ main, .my-score-form {
 
 }
 
-.score-display, .leader-board {
+.my-score-form {
+    justify-content: center;
+}
+
+/* .leader-board {
+    padding: 20px;
+} */
+
+.score-display,
+.leader-board {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
@@ -60,10 +72,10 @@ main, .my-score-form {
 .same-line {
     display: flex;
     flex-direction: row;
-    
+
 }
 
-#member-list li{
+#member-list li {
     text-align: left;
     padding-left: 10%;
 }
@@ -94,15 +106,24 @@ input {
 }
 
 #enter-leader-board {
-    
+    align-items: center;
+    width: 100%;
     background-color: black;
     border: 2px solid black;
     color: white;
     font-size: 16px;
     font-weight: bold;
+    padding: 0px;
 }
 
 #enter-leader-board:hover {
     background-color: grey;
     border: 2px solid grey;
+}
+
+@media screen and (max-width: 770px) {
+
+    element.style {
+        margin-left: 1px;
+    }
 }

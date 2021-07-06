@@ -10,6 +10,7 @@ var opA = document.querySelector("#opA");
 var opB = document.querySelector("#opB");
 var opC = document.querySelector("#opC");
 var opD = document.querySelector("#opD");
+var resultEl = document.querySelector(".result-timed")
 var timerTitleEl = document.querySelector("#timer-title");
 var timerEl = document.querySelector("#timer");
 var scoreLog = localStorage.getItem("scoreLog");
@@ -96,7 +97,6 @@ function timerFunction() {
                 $(this).css("cursor", "default")
             });
 
-            // quizCompleted = true;
             results.classList.remove("hide");
             results.classList.add("show");
             opA.removeEventListener("click", evaluateAns);
@@ -104,8 +104,7 @@ function timerFunction() {
             opC.removeEventListener("click", evaluateAns);
             opD.removeEventListener("click", evaluateAns);
             results.addEventListener("click", function () {
-                const score = { 0: "iwin" };
-                const gametype = { true: "iwin" }
+    
                 localStorage.setItem("scoreLog", 0);
                 localStorage.setItem("gameType", true);
                 window.location = "scores.html";
@@ -115,14 +114,36 @@ function timerFunction() {
         timerEl.innerHTML = (timer / 100).toFixed(2);
         if (!quizCompleted)
             --timer;
+           
     }, 10)
+
 }
 
+setInterval(function () {
+
+    resultEl.classList.add("hide")
+
+},2000)
+
+
+
 function showResults() {
+
 
     console.log("correctLog = " + correctLog);
     if (!quizCompleted) {
         quizCompleted = true
+
+        opA.removeEventListener("click", evaluateAns);
+        opB.removeEventListener("click", evaluateAns);
+        opC.removeEventListener("click", evaluateAns);
+        opD.removeEventListener("click", evaluateAns);
+    
+        $(".op-btn").hover(function () {
+            $(this).css("border-color", "white");
+            $(this).css("cursor", "default")
+        });
+    
         if (timedTest) {
 
             localStorage.setItem("scoreLog", timer);
@@ -232,8 +253,16 @@ function evaluateAns(e) {
         if (e.target.dataset.correct === "false" && quizCompleted === false) {
             timer -= 1000;
             currQ++;
+            resultEl.classList.remove("hide")
+            resultEl.classList.add("show")
+            resultEl.innerText = "INCORRECT"
         }
-        else currQ++;
+        else {
+             currQ++;
+             resultEl.classList.remove("hide")
+             resultEl.classList.add("show")
+             resultEl.innerText = "CORRECT"
+        }
     }
 
     if (!lastQ) {
