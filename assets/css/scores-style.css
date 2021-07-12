@@ -67,6 +67,7 @@ main {
 .leader-board {
     flex-wrap: wrap;
     justify-content: space-evenly;
+    width: 300px;
 }
 
 .same-line {
